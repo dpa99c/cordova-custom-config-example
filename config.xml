@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="uk.co.workingedge.phonegap.plugins.example.customconfig" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Custom config plugin example</name>
+    <description>
+        An example app that demonstrates use of cordova-custom-config plugin
+    </description>
+    <author email="dave@workingedge.co.uk" href="http://www.workingedge.co.uk/dave">
+        Dave Alden
+    </author>
+    <content src="index.html" />
+
+    <access origin="*" />
+    <preference name="Fullscreen" value="false" />
+
+    <plugin name="cordova-plugin-whitelist" version="1.0.0" />
+    <plugin name="cordova-custom-config" version="1" />
+
+    <platform name="android">
+        <!--These preferences are actually available in Cordova by default although not currently documented -->
+        <preference name="android-minSdkVersion" value="10" />
+        <preference name="android-maxSdkVersion" value="22" />
+        <preference name="android-targetSdkVersion" value="21" />
+
+        <!--custom preferences examples-->
+        <preference name="android-windowSoftInputMode" value="stateVisible" />
+        <preference name="android-installLocation" value="auto" />
+        <preference name="android-launchMode" value="singleTop" />
+        <preference name="android-activity-hardwareAccelerated" value="false" />
+        <preference name="android-manifest-hardwareAccelerated" value="false" />
+        <preference name="android-configChanges" value="orientation" />
+        <preference name="android-theme" value="@android:style/Theme.Black.NoTitleBar" />
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <supports-screens
+                android:xlargeScreens="false"
+                android:largeScreens="false"
+                android:smallScreens="false" />
+
+            <uses-permission android:name="android.permission.READ_CONTACTS" android:maxSdkVersion="15" />
+            <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+        </config-file>
+    </platform>
+
+    <platform name="ios">
+
+        <!-- Set orientation on iPhone -->
+        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations">
+            <array>
+                <string>UIInterfaceOrientationPortrait</string>
+                <string>UIInterfaceOrientationPortraitUpsideDown</string>
+            </array>
+        </config-file>
+
+        <!-- Set orientation on iPad -->
+        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations~ipad">
+            <array>
+                <string>UIInterfaceOrientationPortrait</string>
+                <string>UIInterfaceOrientationPortraitUpsideDown</string>
+            </array>
+        </config-file>
+
+        <!-- Set background location mode -->
+        <config-file platform="ios" target="*-Info.plist" parent="UIBackgroundModes">
+            <array>
+                <string>location</string>
+            </array>
+        </config-file>
+
+        <!-- Set message displayed when app requests constant location updates -->
+        <config-file platform="ios" target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+            <string>This app requires constant access to your location in order to track your position, even when the screen is off.</string>
+        </config-file>
+
+        <!-- Set message displayed when app requests foreground location updates -->
+        <config-file platform="ios" target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+            <string>This app will now only track your location when the screen is on and the app is displayed.</string>
+        </config-file>
+
+        <!-- Allow arbitrary loading of resources over HTTP on iOS9 -->
+        <config-file platform="ios" target="*-Info.plist" parent="NSAppTransportSecurity">
+            <dict>
+                <key>NSAllowsArbitraryLoads</key>
+                <true/>
+            </dict>
+        </config-file>
+
+    </platform>
+</widget>
