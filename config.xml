@@ -43,6 +43,9 @@
 
     <platform name="ios">
 
+        <preference name="ios-XCBuildConfiguration-ENABLE_BITCODE" value="NO" />
+        <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="8.0" />
+
         <!-- Set orientation on iPhone -->
         <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations">
             <array>
