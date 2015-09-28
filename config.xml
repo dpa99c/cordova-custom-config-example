@@ -43,8 +43,11 @@
 
     <platform name="ios">
 
+        <!-- Set ENABLE_BITCODE to NO in XCode project file -->
         <preference name="ios-XCBuildConfiguration-ENABLE_BITCODE" value="NO" />
-        <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="8.0" />
+
+        <!-- Set deploy target SDK to iOS 7.0 but only for release builds -->
+        <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="7.0" buildType="release" />
 
         <!-- Set orientation on iPhone -->
         <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations">
