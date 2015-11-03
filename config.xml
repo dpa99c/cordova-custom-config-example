@@ -15,6 +15,8 @@
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
     <plugin name="cordova-custom-config" version="1" />
 
+    <preference name="cordova-custom-config-autorestore" value="false" />
+
     <platform name="android">
         <!--These preferences are actually available in Cordova by default although not currently documented -->
         <preference name="android-minSdkVersion" value="10" />
