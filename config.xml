@@ -46,11 +46,20 @@
 
     <platform name="ios">
 
-        <!-- Set ENABLE_BITCODE to NO in XCode project file -->
-        <preference name="ios-XCBuildConfiguration-ENABLE_BITCODE" value="NO" />
+        <!-- ENABLE_BITCODE to YES in XCode project file and override NO value in /ios/cordova/build.xcconfig -->
+        <preference name="ios-XCBuildConfiguration-ENABLE_BITCODE" value="YES" />
 
-        <!-- Set deploy target SDK to iOS 7.0 but only for release builds -->
+        <!-- Set deploy target SDKs for release and debug builds -->
+        <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="9.1" buildType="debug" />
         <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="7.0" buildType="release" />
+
+        <!-- Custom code signing profiles (overriding those already in /ios/cordova/*.xcconfig -->
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY" value="Custom Developer" buildType="debug" />
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="Custom Developer (All iOS SDKs)" buildType="debug" />
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="Custom Developer (iOS 9.1)" buildType="debug" />
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY" value="Custom Distribution" buildType="release" />
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="Custom Distribution (All iOS SDK)" buildType="release" />
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="Custom Distribution (iOS 9.1)" buildType="release" />
 
         <!-- Set orientation on iPhone -->
         <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations">
