@@ -24,7 +24,18 @@
         <preference name="android-maxSdkVersion" value="22" />
         <preference name="android-targetSdkVersion" value="21" />
 
-        <!--custom preferences examples-->
+        <!-- Or you can use a config-file element for them -->
+        <!--
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-sdk android:maxSdkVersion="22" android:minSdkVersion="10" android:targetSdkVersion="21" />
+        </config-file>
+        -->
+
+        <!--
+            pre-defined preference examples
+            DEPRECATED in favour of xpath preferences
+        -->
+        <!--
         <preference name="android-windowSoftInputMode" value="stateVisible" />
         <preference name="android-installLocation" value="auto" />
         <preference name="android-launchMode" value="singleTask" />
@@ -32,6 +43,16 @@
         <preference name="android-manifest-hardwareAccelerated" value="false" />
         <preference name="android-configChanges" value="orientation" />
         <preference name="android-theme" value="@android:style/Theme.Red.NoTitleBar" />
+        -->
+
+        <!--xpath preference examples-->
+        <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:windowSoftInputMode" value="stateVisible" />
+        <preference name="android-manifest/@android:installLocation" value="auto" />
+        <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:launchMode" value="singleTask" />
+        <preference name="android-manifest/application/@android:hardwareAccelerated" value="false" />
+        <preference name="android-manifest/@android:hardwareAccelerated" value="false" />
+        <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:configChanges" value="orientation" />
+        <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:theme" value="@android:style/Theme.Red.NoTitleBar" />
 
         <config-file target="AndroidManifest.xml" parent="/*">
             <supports-screens
