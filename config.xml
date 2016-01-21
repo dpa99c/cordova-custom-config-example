@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="uk.co.workingedge.phonegap.plugins.example.customconfig" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget
+        id="uk.co.workingedge.phonegap.plugins.example.customconfig"
+        version="0.0.1"
+        xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Custom config plugin example</name>
     <description>
         An example app that demonstrates use of cordova-custom-config plugin
