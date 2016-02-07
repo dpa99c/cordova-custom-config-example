@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="uk.co.workingedge.phonegap.plugins.example.customconfig" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget
+        id="uk.co.workingedge.phonegap.plugins.example.customconfig"
+        version="0.0.1"
+        xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Custom config plugin example</name>
     <description>
         An example app that demonstrates use of cordova-custom-config plugin
@@ -19,38 +24,62 @@
     <preference name="cordova-custom-config-stoponerror" value="true" />
 
     <platform name="android">
-        <!--These preferences are actually available in Cordova by default although not currently documented -->
+
+        <!-- custom preferences examples -->
+        <preference name="android-manifest/application/activity/@android:windowSoftInputMode" value="stateVisible" />
+        <preference name="android-manifest/@android:installLocation" value="auto" />
+        <preference name="android-manifest/application/@android:hardwareAccelerated" value="false" />
+        <preference name="android-manifest/@android:hardwareAccelerated" value="false" />
+        <preference name="android-manifest/application/activity/@android:configChanges" value="orientation" />
+        <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.Red.NoTitleBar" />
+
+        <!-- specify activity name -->
+        <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:launchMode" value="singleTask" />
+
+
+        <!-- These preferences are actually available in Cordova by default although not currently documented -->
         <preference name="android-minSdkVersion" value="10" />
         <preference name="android-maxSdkVersion" value="22" />
         <preference name="android-targetSdkVersion" value="21" />
 
-        <!--custom preferences examples-->
-        <preference name="android-windowSoftInputMode" value="stateVisible" />
-        <preference name="android-installLocation" value="auto" />
-        <preference name="android-launchMode" value="singleTask" />
-        <preference name="android-activity-hardwareAccelerated" value="false" />
-        <preference name="android-manifest-hardwareAccelerated" value="false" />
-        <preference name="android-configChanges" value="orientation" />
-        <preference name="android-theme" value="@android:style/Theme.Red.NoTitleBar" />
+        <!-- Or you can use a config-file element for them -->
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-sdk android:maxSdkVersion="22" android:minSdkVersion="10" android:targetSdkVersion="21" />
+        </config-file>
 
+        <!-- custom config block example -->
         <config-file target="AndroidManifest.xml" parent="/*">
             <supports-screens
-                android:xlargeScreens="false"
-                android:largeScreens="false"
-                android:smallScreens="false" />
+                    android:xlargeScreens="false"
+                    android:largeScreens="false"
+                    android:smallScreens="false" />
 
             <uses-permission android:name="android.permission.READ_CONTACTS" android:maxSdkVersion="15" />
             <uses-permission android:name="android.permission.WRITE_CONTACTS" />
         </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="./application">
+            <some-element />
+        </config-file>
+
     </platform>
 
     <platform name="ios">
 
-        <!-- Set ENABLE_BITCODE to NO in XCode project file -->
-        <preference name="ios-XCBuildConfiguration-ENABLE_BITCODE" value="NO" />
+        <!-- Set ENABLE_BITCODE to YES in XCode project file override NO value in /ios/cordova/build.xcconfig -->
+        <preference name="ios-XCBuildConfiguration-ENABLE_BITCODE" value="YES" />
 
-        <!-- Set deploy target SDK to iOS 7.0 but only for release builds -->
+        <!-- Set deploy target SDKs for release and debug builds -->
+        <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="9.1" buildType="debug" quote="none" />
         <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="7.0" buildType="release" />
+
+        <!-- Custom code signing profiles (overriding those in /ios/cordova/*.xcconfig -->
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" buildType="debug" xcconfigEnforce="true" />
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" buildType="debug" />
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" buildType="debug" />
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" xcconfigEnforce="false" />
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" />
+        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" />
 
         <!-- Set orientation on iPhone -->
         <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations">
