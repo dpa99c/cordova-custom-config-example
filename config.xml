@@ -43,6 +43,11 @@
         <preference name="android-targetSdkVersion" value="21" />
 
         <!-- Or you can use a config-file element for them -->
+        <!--
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-sdk android:maxSdkVersion="22" android:minSdkVersion="10" android:targetSdkVersion="21" />
+        </config-file>
+        -->
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-sdk android:maxSdkVersion="22" android:minSdkVersion="10" android:targetSdkVersion="21" />
         </config-file>
