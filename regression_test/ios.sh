@@ -19,6 +19,9 @@ cordova prepare ios --verbose
 rm -Rf node_modules
 
 cordova platform rm ios --verbose
+rm -Rf node_modules
+
+cordova platform add ios --verbose
 
 # Post cleanup
 rm -Rf node_modules plugins platforms
