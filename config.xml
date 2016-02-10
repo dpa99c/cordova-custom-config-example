@@ -20,7 +20,7 @@
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
     <plugin name="cordova-custom-config" version="1" />
 
-    <preference name="cordova-custom-config-autorestore" value="false" />
+    <preference name="cordova-custom-config-autorestore" value="true" />
     <preference name="cordova-custom-config-stoponerror" value="true" />
 
     <platform name="android">
@@ -31,7 +31,6 @@
         <preference name="android-manifest/application/@android:hardwareAccelerated" value="false" />
         <preference name="android-manifest/@android:hardwareAccelerated" value="false" />
         <preference name="android-manifest/application/activity/@android:configChanges" value="orientation" />
-        <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.Red.NoTitleBar" />
 
         <!-- specify activity name -->
         <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:launchMode" value="singleTask" />
