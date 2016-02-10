@@ -20,7 +20,7 @@
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
     <plugin name="cordova-custom-config" version="1" />
 
-    <preference name="cordova-custom-config-autorestore" value="true" />
+    <preference name="cordova-custom-config-autorestore" value="false" />
     <preference name="cordova-custom-config-stoponerror" value="true" />
 
     <platform name="android">
@@ -38,9 +38,9 @@
 
 
         <!-- These preferences are actually available in Cordova by default although not currently documented -->
-        <preference name="android-minSdkVersion" value="10" />
-        <preference name="android-maxSdkVersion" value="22" />
-        <preference name="android-targetSdkVersion" value="21" />
+        <preference name="android-minSdkVersion" value="14" />
+        <preference name="android-maxSdkVersion" value="24" />
+        <preference name="android-targetSdkVersion" value="23" />
 
         <!-- Or you can use a config-file element for them -->
         <config-file target="AndroidManifest.xml" parent="/*">
