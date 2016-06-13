@@ -26,6 +26,7 @@
     <platform name="android">
 
         <!-- custom preferences examples -->
+        <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.Material" />
         <preference name="android-manifest/application/activity/@android:windowSoftInputMode" value="stateVisible" />
         <preference name="android-manifest/@android:installLocation" value="auto" />
         <preference name="android-manifest/application/@android:hardwareAccelerated" value="false" />
