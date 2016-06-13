@@ -22,6 +22,7 @@
 
     <preference name="cordova-custom-config-autorestore" value="true" />
     <preference name="cordova-custom-config-stoponerror" value="true" />
+    <preference name="cordova-custom-config-hook" value="after_prepare" />
 
     <platform name="android">
 
