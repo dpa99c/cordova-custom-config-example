@@ -109,6 +109,11 @@
             <meta-data android:name="bird" android:value="@string/eagle" />
         </config-file>
 
+        <!-- Add (rather than overwrite) a config-file block -->
+        <config-file target="AndroidManifest.xml" parent="./" add="true">
+            <application android:name="customApplication"></application>
+        </config-file>
+
     </platform>
 
     <platform name="ios">

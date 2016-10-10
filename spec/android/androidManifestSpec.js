@@ -104,4 +104,8 @@ describe("cordova-custom-config android output", function() {
     it("should insert Cordova activity-level meta-data", function() {
         xmlHelper.assertXpathExists(outputManifest, './application/activity/[@android:name="MainActivity"]/meta-data', 2);
     });
+
+    it("should add rather than replace the config-file root element when add=\"true\"", function() {
+        xmlHelper.assertXpathExists(outputManifest, './application', 2);
+    });
 });
