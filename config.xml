@@ -6,9 +6,7 @@
         xmlns:cdv="http://cordova.apache.org/ns/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Custom config plugin example</name>
-    <description>
-        An example app that demonstrates use of cordova-custom-config plugin
-    </description>
+    <description>An example app that demonstrates use of cordova-custom-config plugin</description>
     <author email="dave@workingedge.co.uk" href="http://www.workingedge.co.uk/dave">
         Dave Alden
     </author>
@@ -26,30 +24,32 @@
 
     <platform name="android">
 
+        <hook type="after_platform_add" src="hooks/android/restoreOriginalConfig.js" />
+        <hook type="before_prepare" src="hooks/android/restoreOriginalConfig.js" />
+
         <!-- custom preferences examples -->
         <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.Material" />
         <preference name="android-manifest/application/activity/@android:windowSoftInputMode" value="stateVisible" />
-        <preference name="android-manifest/@android:installLocation" value="auto" />
-        <preference name="android-manifest/application/@android:hardwareAccelerated" value="false" />
-        <preference name="android-manifest/@android:hardwareAccelerated" value="false" />
+        <preference name="android-manifest/@android:installLocation" value="somewhere" />
+        <preference name="android-manifest/application/@android:hardwareAccelerated" value="custom" />
+        <preference name="android-manifest/@android:hardwareAccelerated" value="custom" />
         <preference name="android-manifest/application/activity/@android:configChanges" value="orientation" />
 
         <!-- specify activity name -->
-        <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:launchMode" value="singleTask" />
-
+        <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:launchMode" value="custom" />
 
         <!-- Delete an element -->
         <preference name="android-manifest/application/activity[@android:name='DeleteMe']" delete="true" />
 
         <!-- These preferences are actually available in Cordova by default although not currently documented -->
-        <preference name="android-minSdkVersion" value="14" />
-        <preference name="android-maxSdkVersion" value="24" />
-        <preference name="android-targetSdkVersion" value="23" />
+        <preference name="android-minSdkVersion" value="101" />
+        <preference name="android-maxSdkVersion" value="102" />
+        <preference name="android-targetSdkVersion" value="103" />
 
         <!-- root-level config-file block -->
         <config-file target="AndroidManifest.xml" parent="/*">
 
-            <supports-screens android:anyDensity="false" android:largeScreens="false" android:normalScreens="false" android:resizeable="false" android:smallScreens="false" android:xlargeScreens="false" />
+            <supports-screens android:anyDensity="custom" android:largeScreens="custom" android:normalScreens="custom" android:resizeable="custom" android:smallScreens="custom" android:xlargeScreens="custom" />
 
             <uses-permission android:name="android.permission.READ_CONTACTS" android:maxSdkVersion="15" />
             <uses-permission android:name="android.permission.WRITE_CONTACTS" />
