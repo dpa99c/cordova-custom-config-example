@@ -8,6 +8,11 @@ var restore = (function(){
     var restore, context;
     var fs, path, cwd;
 
+    var copySync = function (sourcePath, targetPath){
+        var contents = fs.readFileSync(sourcePath);
+        fs.writeFileSync(targetPath, contents);
+    };
+
     /************
      * Public API
      ************/
@@ -15,13 +20,13 @@ var restore = (function(){
         init: function(ctx){
             context = ctx;
 
-            fs = require('fs-extra');
+            fs = require('fs');
             path = require('path');
             cwd = path.resolve();
 
             var source = path.join(cwd, 'spec/android/AndroidManifest.xml');
             var target = path.join(cwd, 'platforms/android/AndroidManifest.xml');
-            fs.copySync(source, target);
+            copySync(source, target);
             console.log("Restored original AndroidManifest.xml");
         }
 

@@ -18,11 +18,8 @@
     },
     "issue": "https://github.com/dpa99c/cordova-custom-config-example/issues",
     "scripts": {
-        "test": "jasmine",
-        "jshint": "jshint plugins/cordova-custom-config/hooks && jshint tests"
-    },
-    "dependencies": {
-        "fs-extra": "0.26.5"
+        "test": "npm install && npm run-script jshint && jasmine",
+        "jshint": "jshint plugins/cordova-custom-config/hooks"
     },
     "devDependencies": {
         "jshint": "^2.6.0",

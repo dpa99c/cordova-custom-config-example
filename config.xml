@@ -16,7 +16,7 @@
     <preference name="Fullscreen" value="false" />
 
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
-    <plugin name="cordova-custom-config" version="2" />
+    <plugin name="cordova-custom-config" version="3" />
 
     <preference name="cordova-custom-config-autorestore" value="false" />
     <preference name="cordova-custom-config-stoponerror" value="true" />
