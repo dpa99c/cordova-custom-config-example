@@ -20,13 +20,14 @@
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
     <plugin name="cordova-custom-config" version="2" />
 
-    <preference name="cordova-custom-config-autorestore" value="true" />
+    <preference name="cordova-custom-config-autorestore" value="false" />
     <preference name="cordova-custom-config-stoponerror" value="true" />
     <preference name="cordova-custom-config-hook" value="after_prepare" />
 
     <platform name="android">
 
         <!-- custom preferences examples -->
+        <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.Material" />
         <preference name="android-manifest/application/activity/@android:windowSoftInputMode" value="stateVisible" />
         <preference name="android-manifest/@android:installLocation" value="auto" />
         <preference name="android-manifest/application/@android:hardwareAccelerated" value="false" />
@@ -42,30 +43,58 @@
         <preference name="android-maxSdkVersion" value="24" />
         <preference name="android-targetSdkVersion" value="23" />
 
-        <!-- Or you can use a config-file element for them -->
+        <!-- root-level config-file block -->
         <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-sdk android:maxSdkVersion="22" android:minSdkVersion="10" android:targetSdkVersion="21" />
-        </config-file>
 
-        <!-- custom config block example -->
-        <config-file target="AndroidManifest.xml" parent="/*">
-            <supports-screens
-                    android:xlargeScreens="false"
-                    android:largeScreens="false"
-                    android:smallScreens="false" />
+            <supports-screens android:anyDensity="false" android:largeScreens="false" android:normalScreens="false" android:resizeable="false" android:smallScreens="false" android:xlargeScreens="false" />
 
             <uses-permission android:name="android.permission.READ_CONTACTS" android:maxSdkVersion="15" />
             <uses-permission android:name="android.permission.WRITE_CONTACTS" />
-        </config-file>
-
-        <config-file target="AndroidManifest.xml" parent="./application">
-            <some-element />
-        </config-file>
-
-        <config-file parent="/*" target="AndroidManifest.xml">
             <uses-permission android:name="android.permission.CAMERA" />
+
             <uses-feature android:name="android.hardware.camera" />
             <uses-feature android:name="android.hardware.camera.autofocus" />
+
+            <permission android:name="com.mobiledonky.example.push.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+            <permission android:name="com.mobiledonky.example.push.permission.C2D_TEST" android:protectionLevel="signature" />
+        </config-file>
+
+        <!-- application-level config-file block -->
+        <config-file target="AndroidManifest.xml" parent="./application">
+            <activity android:label="@string/title_activity_photo_gps" android:name="com.example.PhotoGpsActivity" android:screenOrientation="portrait" android:windowActionBar="false"/>
+            <activity android:name="com.example.NfcActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
+
+            <receiver android:name="net.donky.core.gcm.DonkyGcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+                <intent-filter>
+                    <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                    <category android:name="com.mobiledonky.example.push" />
+                </intent-filter>
+            </receiver>
+            <receiver android:name="net.donky.core.DonkyBroadcastReceiver">
+                <intent-filter>
+                    <action android:name="net.donky.core.ACTION_SYNCHRONISE" />
+                </intent-filter>
+            </receiver>
+
+            <service android:exported="false" android:name="net.donky.core.gcm.DonkyGcmIntentService" />
+            <service android:exported="false" android:name="net.donky.core.DonkyIntentService" />
+
+            <uses-library android:name="android.test.runner" />
+            <uses-library android:name="android.test.harness" />
+
+        </config-file>
+
+        <!-- Cordova activity-level config-file block -->
+        <config-file target="AndroidManifest.xml" parent="./application/activity/[@android:name='MainActivity']">
+            <intent-filter android:label="custom_1">
+                <action android:name="android.intent.action.custom_1" />
+            </intent-filter>
+            <intent-filter android:label="custom_2">
+                <action android:name="android.intent.action.custom_2" />
+            </intent-filter>
+
+            <meta-data android:name="fish" android:value="@string/shark" />
+            <meta-data android:name="bird" android:value="@string/eagle" />
         </config-file>
 
     </platform>
