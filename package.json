@@ -21,7 +21,7 @@
         "test": "npm install && npm run-script jshint && jasmine",
         "jshint": "jshint plugins/cordova-custom-config/hooks"
     },
-    "devDependencies": {
+    "dependencies": {
         "jshint": "^2.6.0",
         "jasmine": "^2.5.2",
         "elementtree": "^0.1.6"
