@@ -1,5 +1,5 @@
-Cordova/Phonegap IsTablet Example
-=================================
+Cordova/Phonegap Custom Config Example
+======================================
 
 This repo contains an example project which illustrates use of the [cordova-custom-config plugin](https://github.com/dpa99c/cordova-custom-config) for iOS and Android, which provides hook scripts to update platform configuration files based on custom preferences and config-file data defined in config.xml that are not supported out-of-the-box by Cordova/Phonegap.
 
