@@ -120,11 +120,23 @@
         <hook type="after_platform_add" src="hooks/ios/restoreOriginalConfig.js" />
         <hook type="before_prepare" src="hooks/ios/restoreOriginalConfig.js" />
 
+        <!-- Set various quote options -->
+        <preference name="ios-XCBuildConfiguration-QUOTE_DEFAULT" value="YES" buildType="debug"/>
+        <preference name="ios-XCBuildConfiguration-QUOTE_BOTH" value="YES" quote="both" buildType="debug"/>
+        <preference name="ios-XCBuildConfiguration-QUOTE_KEY" value="YES" quote="key" buildType="debug"/>
+        <preference name="ios-XCBuildConfiguration-QUOTE_VALUE" value="YES" quote="value" buildType="debug"/>
+        <preference name="ios-XCBuildConfiguration-QUOTE_NONE" value="YES" quote="none" buildType="debug"/>
+
+        <!-- Set various buildType options -->
+        <preference name="ios-XCBuildConfiguration-BUiLD_TYPE_DEFAULT" value="YES"/>
+        <preference name="ios-XCBuildConfiguration-BUiLD_TYPE_DEBUG" value="YES" buildType="debug"/>
+        <preference name="ios-XCBuildConfiguration-BUiLD_TYPE_RELEASE" value="YES" quote="both" buildType="release"/>
+
         <!-- Set ENABLE_BITCODE to YES in XCode project file override NO value in /ios/cordova/build.xcconfig -->
         <preference name="ios-XCBuildConfiguration-ENABLE_BITCODE" value="YES" />
 
         <!-- Set deploy target SDKs for release and debug builds -->
-        <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="9.1" buildType="debug" quote="none" />
+        <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="9.1" buildType="debug" />
         <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="7.0" buildType="release" />
 
         <!-- Custom code signing profiles (overriding those in /ios/cordova/*.xcconfig -->
