@@ -117,6 +117,8 @@
     </platform>
 
     <platform name="ios">
+        <hook type="after_platform_add" src="hooks/ios/restoreOriginalConfig.js" />
+        <hook type="before_prepare" src="hooks/ios/restoreOriginalConfig.js" />
 
         <!-- Set ENABLE_BITCODE to YES in XCode project file override NO value in /ios/cordova/build.xcconfig -->
         <preference name="ios-XCBuildConfiguration-ENABLE_BITCODE" value="YES" />

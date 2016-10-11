@@ -3,15 +3,15 @@
 var restore = (function(){
 
     /**********************
+     * Modules
+     *********************/
+    var fs, path, cwd, fileUtils;
+
+    /**********************
      * Internal properties
      *********************/
     var restore, context;
-    var fs, path, cwd;
 
-    var copySync = function (sourcePath, targetPath){
-        var contents = fs.readFileSync(sourcePath);
-        fs.writeFileSync(targetPath, contents);
-    };
 
     /************
      * Public API
@@ -20,14 +20,14 @@ var restore = (function(){
         init: function(ctx){
             context = ctx;
 
+            // Load modules
             fs = require('fs');
             path = require('path');
             cwd = path.resolve();
+            fileUtils = require(path.join(cwd, 'plugins/cordova-custom-config/hooks/fileUtils.js'))(ctx);
 
-            var source = path.join(cwd, 'spec/android/AndroidManifest.xml');
-            var target = path.join(cwd, 'platforms/android/AndroidManifest.xml');
-            copySync(source, target);
-            console.log("Restored original AndroidManifest.xml");
+            fileUtils.copySyncRelative('spec/android/AndroidManifest.xml', 'platforms/android/AndroidManifest.xml');
+            console.log("Restored original Android platform config");
         }
 
     };
