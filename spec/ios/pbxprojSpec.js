@@ -10,15 +10,12 @@ var fileHelper = require(path.resolve('spec/helper/file.js'))();
 
 var context = fileHelper.getFakeCordovaContext();
 var fileUtils = require(path.resolve('plugins/cordova-custom-config/hooks/fileUtils.js'))(context);
-var logger = require(path.resolve('plugins/cordova-custom-config/hooks/logger.js'))(context);
-
 
 /**
  * Globals
  */
 var projectName = fileUtils.getProjectName();
 var pbxprojPath = 'platforms/ios/'+projectName+'.xcodeproj/project.pbxproj';
-//var pbxprojPath = 'spec/ios/project.pbxproj';
 
 if(!fileHelper.fileExists(pbxprojPath)){
     console.warn("iOS pbxproj not found at "+path.resolve(pbxprojPath));
@@ -28,7 +25,6 @@ if(!fileHelper.fileExists(pbxprojPath)){
 var pbxproj = xcode.project(pbxprojPath);
 pbxproj = pbxproj.parseSync();
 var buildConfig = pbxproj.pbxXCBuildConfigurationSection();
-logger.dump(buildConfig);
 
 var debugBlock;
 var releaseBlock;
