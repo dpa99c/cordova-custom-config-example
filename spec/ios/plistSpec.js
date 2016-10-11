@@ -27,8 +27,6 @@ if(!fileHelper.fileExists(plistPath)){
 
 infoPlist = plist.parse(fs.readFileSync(plistPath, 'utf8'));
 
-logger.dump(infoPlist);
-
 describe("cordova-custom-config iOS plist output", function() {
 
     console.log("Running iOS plist spec");
