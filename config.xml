@@ -168,13 +168,6 @@
             <string>This app will now only track your location when the screen is on and the app is displayed.</string>
         </config-file>
 
-        <!-- Allow arbitrary loading of resources over HTTP on iOS9 -->
-        <config-file platform="ios" target="*-Info.plist" parent="NSAppTransportSecurity">
-            <dict>
-                <key>NSAllowsArbitraryLoads</key>
-                <true/>
-            </dict>
-        </config-file>
 
     </platform>
 </widget>

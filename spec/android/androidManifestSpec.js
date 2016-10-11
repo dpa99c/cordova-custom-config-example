@@ -3,109 +3,110 @@
  */
 var fs = require('fs');
 var path = require('path');
-var cwd = path.resolve(); // project root
 
-var fileHelper = require(path.resolve(cwd, 'spec/helper/file.js'))();
-var xmlHelper = require(path.resolve(cwd, 'spec/helper/xml.js'))();
+var fileHelper = require(path.resolve('spec/helper/file.js'))();
+var xmlHelper = require(path.resolve('spec/helper/xml.js'))();
 
 /**
  * Globals
  */
-var outputManifestPath = 'platforms/android/AndroidManifest.xml';
-var outputManifest;
+var manifestPath = 'platforms/android/AndroidManifest.xml';
+var manifest;
 
-if(!fileHelper.fileExists(outputManifestPath)){
-    console.warn("Android manifest not found at "+path.resolve(outputManifestPath));
+if(!fileHelper.fileExists(manifestPath)){
+    console.warn("Android manifest not found at "+path.resolve(manifestPath));
     return;
 }
 
-outputManifest = fileHelper.parseElementtreeSync(outputManifestPath);
+manifest = fileHelper.parseElementtreeSync(manifestPath);
 
 describe("cordova-custom-config android output", function() {
 
+    console.log("Running Android manifest spec");
+
     it("should insert manifest-level attributes", function() {
-        xmlHelper.assertXpathExists(outputManifest, './[@android:installLocation="somewhere"]');
+        xmlHelper.assertXpathExists(manifest, './[@android:installLocation="somewhere"]');
     });
 
     it("should insert application-level attributes", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/[@android:hardwareAccelerated="custom"]');
+        xmlHelper.assertXpathExists(manifest, './application/[@android:hardwareAccelerated="custom"]');
     });
 
     it("should insert activity-level attributes", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/activity/[@android:configChanges="orientation"]');
+        xmlHelper.assertXpathExists(manifest, './application/activity/[@android:configChanges="orientation"]');
     });
 
     it("should preserve Cordova main activity", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/activity/[@android:name="MainActivity"]');
+        xmlHelper.assertXpathExists(manifest, './application/activity/[@android:name="MainActivity"]');
     });
 
     it("should insert attributes on Cordova main activity", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/activity/[@android:name="MainActivity"]/[@android:launchMode]');
+        xmlHelper.assertXpathExists(manifest, './application/activity/[@android:name="MainActivity"]/[@android:launchMode]');
     });
 
     it("should delete the specified element", function() {
-        xmlHelper.assertXpathNotExists(outputManifest, './application/activity[@android:name="DeleteMe"]');
+        xmlHelper.assertXpathNotExists(manifest, './application/activity[@android:name="DeleteMe"]');
     });
 
     it("should override the minSdkVersion", function() {
-        xmlHelper.assertXpathExists(outputManifest, './uses-sdk[@android:minSdkVersion="101"]');
+        xmlHelper.assertXpathExists(manifest, './uses-sdk[@android:minSdkVersion="101"]');
     });
 
     it("should override the maxSdkVersion", function() {
-        xmlHelper.assertXpathExists(outputManifest, './uses-sdk[@android:maxSdkVersion="102"]');
+        xmlHelper.assertXpathExists(manifest, './uses-sdk[@android:maxSdkVersion="102"]');
     });
 
     it("should override the targetSdkVersion", function() {
-        xmlHelper.assertXpathExists(outputManifest, './uses-sdk[@android:targetSdkVersion="103"]');
+        xmlHelper.assertXpathExists(manifest, './uses-sdk[@android:targetSdkVersion="103"]');
     });
 
     it("should insert root-level supports-screens", function() {
-        xmlHelper.assertXpathExists(outputManifest, './supports-screens/[@android:anyDensity="custom"]');
+        xmlHelper.assertXpathExists(manifest, './supports-screens/[@android:anyDensity="custom"]');
     });
 
     it("should insert root-level uses-permissions", function() {
-        xmlHelper.assertXpathExists(outputManifest, './uses-permission', 4);
+        xmlHelper.assertXpathExists(manifest, './uses-permission', 4);
     });
 
     it("should insert root-level uses-features", function() {
-        xmlHelper.assertXpathExists(outputManifest, './uses-feature', 2);
+        xmlHelper.assertXpathExists(manifest, './uses-feature', 2);
     });
 
     it("should insert root-level permissions", function() {
-        xmlHelper.assertXpathExists(outputManifest, './permission', 2);
+        xmlHelper.assertXpathExists(manifest, './permission', 2);
     });
 
     it("should insert application-level activities", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/activity', 5);
+        xmlHelper.assertXpathExists(manifest, './application/activity', 5);
     });
 
     it("should insert application-level receivers", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/receiver', 2);
-        xmlHelper.assertXpathExists(outputManifest, './application/receiver/intent-filter/action', 2);
-        xmlHelper.assertXpathExists(outputManifest, './application/receiver/intent-filter/category/[@android:name="com.mobiledonky.example.push"]', 1);
+        xmlHelper.assertXpathExists(manifest, './application/receiver', 2);
+        xmlHelper.assertXpathExists(manifest, './application/receiver/intent-filter/action', 2);
+        xmlHelper.assertXpathExists(manifest, './application/receiver/intent-filter/category/[@android:name="com.mobiledonky.example.push"]', 1);
     });
 
     it("should insert application-level services", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/service', 2);
+        xmlHelper.assertXpathExists(manifest, './application/service', 2);
     });
 
     it("should insert application-level uses-library's", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/uses-library', 2);
+        xmlHelper.assertXpathExists(manifest, './application/uses-library', 2);
     });
 
     it("should insert Cordova activity-level intent-filters", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/activity/[@android:name="MainActivity"]/intent-filter', 4);
+        xmlHelper.assertXpathExists(manifest, './application/activity/[@android:name="MainActivity"]/intent-filter', 4);
     });
 
     it("should preserve the default Cordova activity-level intent-filter", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/activity/[@android:name="MainActivity"]/intent-filter/[@android:label="@string/launcher_name"]', 1);
+        xmlHelper.assertXpathExists(manifest, './application/activity/[@android:name="MainActivity"]/intent-filter/[@android:label="@string/launcher_name"]', 1);
     });
 
     it("should insert Cordova activity-level meta-data", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application/activity/[@android:name="MainActivity"]/meta-data', 2);
+        xmlHelper.assertXpathExists(manifest, './application/activity/[@android:name="MainActivity"]/meta-data', 2);
     });
 
     it("should add rather than replace the config-file root element when add=\"true\"", function() {
-        xmlHelper.assertXpathExists(outputManifest, './application', 2);
+        xmlHelper.assertXpathExists(manifest, './application', 2);
     });
 });

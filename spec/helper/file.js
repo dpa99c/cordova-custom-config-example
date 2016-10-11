@@ -8,6 +8,7 @@ var fileHelper = (function(){
     var fileHelper;
 
     var fs = require('fs');
+    var path = require('path');
     var et = require('elementtree');
 
     /************
@@ -30,6 +31,26 @@ var fileHelper = (function(){
                 exists = false;
             }
             return exists;
+        },
+        getFakeCordovaContext: function(){
+            return {
+                hook: 'jasmine',
+                opts: {
+                    platforms: ['android', 'ios'],
+                    options: {argv: []},
+                    verbose: true,
+                    silent: false,
+                    browserify: false,
+                    fetch: false,
+                    nohooks: [],
+                    searchpath: undefined,
+                    save: false,
+                    projectRoot: path.resolve(),
+                    cordova: {platforms: {}, plugins: {}, version: '6.3.1'},
+                    plugin: undefined
+                },
+                cmdLine: '--debug --verbose'
+            };
         }
     };
     return fileHelper;

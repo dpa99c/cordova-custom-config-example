@@ -5,7 +5,7 @@ var restore = (function(){
     /**********************
      * Modules
      *********************/
-    var fs, path, cwd, fileUtils;
+    var fs, path, fileUtils;
 
     /**********************
      * Constants
@@ -31,8 +31,7 @@ var restore = (function(){
             // Load modules
             fs = require('fs');
             path = require('path');
-            cwd = path.resolve();
-            fileUtils = require(path.join(cwd, 'plugins/cordova-custom-config/hooks/fileUtils.js'))(ctx);
+            fileUtils = require(path.resolve('plugins/cordova-custom-config/hooks/fileUtils.js'))(ctx);
             projectName = fileUtils.getProjectName();
 
             fileUtils.copySync('spec/ios/'+projectName+'-Info.plist', 'platforms/ios/'+projectName+'/'+projectName+'-Info.plist');
