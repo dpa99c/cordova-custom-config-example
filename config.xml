@@ -41,6 +41,9 @@
         <!-- Delete an element -->
         <preference name="android-manifest/application/activity[@android:name='DeleteMe']" delete="true" />
 
+        <!-- Delete an element that doesn't exists -->
+        <preference name="android-manifest/application/activity[@android:name='NotPresent']" delete="true" />
+
         <!-- These preferences are actually available in Cordova by default although not currently documented -->
         <preference name="android-minSdkVersion" value="101" />
         <preference name="android-maxSdkVersion" value="102" />
