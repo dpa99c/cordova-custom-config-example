@@ -24,9 +24,6 @@
     "dependencies": {
         "cordova-custom-config": "^3.0.6",
         "jshint": "^2.6.0",
-        "jasmine": "^2.5.2",
-        "elementtree": "^0.1.6",
-        "plist": "^1.2.0",
-        "xcode": "^0.8.9"
+        "jasmine": "^2.5.2"
     }
 }
