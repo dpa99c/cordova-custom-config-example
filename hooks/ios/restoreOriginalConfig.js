@@ -34,7 +34,7 @@ var restore = (function(){
             fs = require('fs');
             path = require('path');
             try{
-                fileUtils = require(path.join('plugins/cordova-custom-config/hooks/fileUtils.js'))(ctx);
+                fileUtils = require(path.resolve('plugins/cordova-custom-config/hooks/fileUtils.js'))(ctx);
             }catch(e){
                 return console.warn("Aborting restore of original iOS platform config - cordova-custom-config plugin not installed yet");
             }
