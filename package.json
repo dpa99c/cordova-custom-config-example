@@ -22,7 +22,7 @@
         "jshint": "jshint plugins/cordova-custom-config/hooks"
     },
     "dependencies": {
-        "cordova-custom-config": "^3.0.5",
+        "cordova-custom-config": "^3.0.6",
         "jshint": "^2.6.0",
         "jasmine": "^2.5.2",
         "elementtree": "^0.1.6",
