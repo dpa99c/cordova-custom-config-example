@@ -20,12 +20,16 @@ var restore = (function(){
         init: function(ctx){
             context = ctx;
 
-            console.log("DUMP: "+require('util').inspect(ctx));
+            console.log("Restoring original Android platform config");
 
             // Load modules
             fs = require('fs');
             path = require('path');
-            fileUtils = require(path.join('plugins/cordova-custom-config/hooks/fileUtils.js'))(ctx);
+            try{
+                fileUtils = require(path.join('plugins/cordova-custom-config/hooks/fileUtils.js'))(ctx);
+            }catch(e){
+                return console.warn("Aborting restore of original Android platform config - cordova-custom-config plugin not installed yet");
+            }
 
             fileUtils.copySyncRelative('spec/android/AndroidManifest.xml', 'platforms/android/AndroidManifest.xml');
             console.log("Restored original Android platform config");
