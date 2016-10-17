@@ -1,26 +1,26 @@
 {
-    "version": "2.1.0",
-    "name": "cordova-custom-config-example",
-    "cordova_name": "cordova-custom-config-example",
-    "description": "Example project to illustrate/validate usage of cordova-custom-config Cordova/Phonegap plugin",
-    "author": "Dave Alden",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dpa99c/cordova-custom-config-example.git"
-    },
-    "cordova": {
-        "id": "cordova-custom-config-example",
-        "platforms": [
-            "android",
-            "ios"
-        ]
-    },
-    "issue": "https://github.com/dpa99c/cordova-custom-config-example/issues",
-    "scripts": {
-        "test": "npm install && npm run-script jshint && jasmine",
-        "jshint": "jshint plugins/cordova-custom-config/hooks"
-    },
+  "version": "2.1.0",
+  "name": "cordova-custom-config-example",
+  "cordova_name": "cordova-custom-config-example",
+  "description": "Example project to illustrate/validate usage of cordova-custom-config Cordova/Phonegap plugin",
+  "author": "Dave Alden",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dpa99c/cordova-custom-config-example.git"
+  },
+  "cordova": {
+    "id": "cordova-custom-config-example",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "issue": "https://github.com/dpa99c/cordova-custom-config-example/issues",
+  "scripts": {
+    "test": "npm install && npm run-script jshint && jasmine",
+    "jshint": "jshint plugins/cordova-custom-config/hooks"
+  },
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
@@ -44,5 +44,8 @@
     "ionic-plugin-keyboard",
     "cordova-custom-config"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android",
+    "ios"
+  ]
 }
