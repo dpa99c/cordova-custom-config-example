@@ -32,7 +32,6 @@ Then prepare the platforms to apply the custom config in `config.xml` to the pla
 # Testing
 
 [![Build Status](https://travis-ci.org/dpa99c/cordova-custom-config-example.png)](https://travis-ci.org/dpa99c/cordova-custom-config-example)
-[![Coverage Status](https://coveralls.io/repos/github/dpa99c/cordova-custom-config-example/badge.svg?branch=master)](https://coveralls.io/github/dpa99c/cordova-custom-config-example?branch=master)
     
 To run the regression tests:
 
