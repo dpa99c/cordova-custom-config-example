@@ -12,4 +12,4 @@ before_install:
   - npm install cordova
   
 before_script:
-  - cordova plugin add cordova-custom-config@latest
+  - cordova plugin add https://github.com/dpa99c/cordova-custom-config.git
