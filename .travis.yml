@@ -1,6 +1,6 @@
-language: node_js
-node_js:
-  - 6
+language: objective-c
+os: osx
+osx_image: xcode8
 
 sudo: false
 
@@ -9,7 +9,11 @@ notifications:
 
 before_install:
   - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
+  - brew update
   - npm install cordova
   
 before_script:
-  - cordova plugin add https://github.com/dpa99c/cordova-custom-config.git
+  - cordova platform add ios
+
+script:
+  - npm test
