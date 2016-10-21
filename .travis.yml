@@ -1,11 +1,19 @@
 os:
   - osx
 
-language:
-  - objective-c
-
 osx_image:
   - xcode8
+
+language:
+  - objective-c
+  - android
+
+android:
+  components:
+    - tools               # will be built with latest version of Android SDK tools
+    - platform-tools      # ''
+    - build-tools-23.0.1  # build tools version of project
+    - android-23          # Android SDK version of project
 
 sudo: false
 
@@ -14,10 +22,11 @@ notifications:
 
 before_install:
   - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
-  - npm install cordova
+  - npm install -g cordova
   
 before_script:
   - cordova platform add ios
+  - cordova platform add android
 
 script:
   - npm test
