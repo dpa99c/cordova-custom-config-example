@@ -18,7 +18,7 @@
     },
     "issue": "https://github.com/dpa99c/cordova-custom-config-example/issues",
     "scripts": {
-        "test": "npm install && npm run-script jshint && jasmine",
+        "test": "npm install && npm run-script jshint && cordova prepare && jasmine",
         "jshint": "jshint plugins/cordova-custom-config/hooks"
     },
     "dependencies": {
