@@ -1,5 +1,5 @@
 {
-    "version": "2.1.0",
+    "version": "3.0.0",
     "name": "cordova-custom-config-example",
     "cordova_name": "cordova-custom-config-example",
     "description": "Example project to illustrate/validate usage of cordova-custom-config Cordova/Phonegap plugin",
@@ -22,7 +22,7 @@
         "jshint": "jshint plugins/cordova-custom-config/hooks"
     },
     "dependencies": {
-        "cordova-custom-config": "^3.0.8",
+        "cordova-custom-config": "*",
         "jshint": "^2.6.0",
         "jasmine": "^2.5.2"
     }
