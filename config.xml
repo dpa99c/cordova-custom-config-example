@@ -186,5 +186,14 @@
         </config-file>
 
 
+        <!-- By default, merge with existing values -->
+        <config-file parent="LSApplicationQueriesSchemes" target="*-Info.plist">
+            <array>
+                <string>myapp</string>
+                <string>myapp2</string>
+                <string>myapp3</string>
+            </array>
+        </config-file>
+
     </platform>
 </widget>
