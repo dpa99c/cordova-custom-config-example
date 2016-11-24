@@ -16,15 +16,18 @@
 
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
 
-    <plugin name="cordova-custom-config" spec="~3.0.8" />
+    <plugin name="cordova-custom-config" spec="*" />
+
     <preference name="cordova-custom-config-autorestore" value="false" />
     <preference name="cordova-custom-config-stoponerror" value="true" />
     <preference name="cordova-custom-config-hook" value="after_prepare" />
 
-    <platform name="android">
+    <hook type="after_platform_add" src="hooks/android/restoreOriginalConfig.js" />
+    <hook type="before_prepare" src="hooks/android/restoreOriginalConfig.js" />
+    <hook type="after_platform_add" src="hooks/ios/restoreOriginalConfig.js" />
+    <hook type="before_prepare" src="hooks/ios/restoreOriginalConfig.js" />
 
-        <hook type="after_platform_add" src="hooks/android/restoreOriginalConfig.js" />
-        <hook type="before_prepare" src="hooks/android/restoreOriginalConfig.js" />
+    <platform name="android">
 
         <!-- custom preferences examples -->
         <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.Material" />
@@ -119,8 +122,6 @@
     </platform>
 
     <platform name="ios">
-        <hook type="after_platform_add" src="hooks/ios/restoreOriginalConfig.js" />
-        <hook type="before_prepare" src="hooks/ios/restoreOriginalConfig.js" />
 
         <!-- Set various quote options -->
         <preference name="ios-XCBuildConfiguration-QUOTE_DEFAULT" value="YES" buildType="debug"/>

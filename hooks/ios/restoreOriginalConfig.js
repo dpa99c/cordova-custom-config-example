@@ -28,8 +28,6 @@ var restore = (function(){
         init: function(ctx){
             context = ctx;
 
-            console.log("Restoring original iOS platform config");
-
             // Load modules
             fs = require('fs');
             path = require('path');
@@ -38,6 +36,10 @@ var restore = (function(){
             }catch(e){
                 return console.warn("Aborting restore of original iOS platform config - cordova-custom-config plugin not installed yet");
             }
+
+            if(!fileUtils.directoryExists('platforms/ios')) return; // no ios platform installed
+
+            console.log("Restoring original iOS platform config");
             projectName = fileUtils.getProjectName();
 
             fileUtils.copySync('spec/ios/'+projectName+'-Info.plist', 'platforms/ios/'+projectName+'/'+projectName+'-Info.plist');
