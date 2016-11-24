@@ -22,11 +22,6 @@
     <preference name="cordova-custom-config-stoponerror" value="true" />
     <preference name="cordova-custom-config-hook" value="after_prepare" />
 
-    <hook type="after_platform_add" src="hooks/android/restoreOriginalConfig.js" />
-    <hook type="before_prepare" src="hooks/android/restoreOriginalConfig.js" />
-    <hook type="after_platform_add" src="hooks/ios/restoreOriginalConfig.js" />
-    <hook type="before_prepare" src="hooks/ios/restoreOriginalConfig.js" />
-
     <platform name="android">
 
         <!-- custom preferences examples -->
