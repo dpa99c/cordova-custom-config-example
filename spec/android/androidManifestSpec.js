@@ -209,7 +209,7 @@ describe("cordova-custom-config android output after 2 prepare operations", func
     });
 
     it("should add rather than replace the config-file root element when add=\"true\"", function() {
-        xmlHelper.assertXpathExists(manifest, './application', 2);
+        xmlHelper.assertXpathExists(manifest, './application', 3);
     });
 
 
