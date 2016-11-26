@@ -25,18 +25,45 @@ if(!fileHelper.fileExists(plistPath)){
     return;
 }
 
-infoPlist = plist.parse(fs.readFileSync(plistPath, 'utf8'));
-
 describe("cordova-custom-config iOS plist output", function() {
+
+    beforeAll(function(done) {
+        fileHelper.restoreOriginaliOSConfig();
+        fileHelper.runCordova('prepare ios', function(err, stdout, stderr){
+            infoPlist = plist.parse(fs.readFileSync(plistPath, 'utf8'));
+            done();
+        });
+    });
+
 
     console.log("Running iOS plist spec");
 
-    it("should override default Cordova iPhone orientations", function() {
-        expect(infoPlist['UISupportedInterfaceOrientations']).toEqual([ 'UIInterfaceOrientationPortrait', 'UIInterfaceOrientationPortraitUpsideDown' ]);
+    it("should merge with existing array values by default", function() {
+        expect(infoPlist['LSApplicationQueriesSchemes']).toEqual([
+            'fbapi',
+            'fb-messenger-api',
+            'fbauth2',
+            'fbshareextension',
+            'myapp',
+            'myapp2',
+            'myapp3'
+        ]);
     });
 
-    it("should override default Cordova iPad orientations", function() {
-        expect(infoPlist['UISupportedInterfaceOrientations~ipad']).toEqual([ 'UIInterfaceOrientationPortrait', 'UIInterfaceOrientationPortraitUpsideDown' ]);
+    it("should merge with existing array values when mode=\"merge\"", function() {
+        expect(infoPlist['UISupportedInterfaceOrientations']).toEqual([
+            'UIInterfaceOrientationLandscapeLeft',
+            'UIInterfaceOrientationLandscapeRight',
+            'UIInterfaceOrientationPortrait',
+            'UIInterfaceOrientationPortraitUpsideDown'
+        ]);
+    });
+
+    it("should replace existing array values when mode=\"replace\"", function() {
+        expect(infoPlist['UISupportedInterfaceOrientations~ipad']).toEqual([
+            'UIInterfaceOrientationPortrait',
+            'UIInterfaceOrientationPortraitUpsideDown'
+        ]);
     });
 
     it("should add location background mode", function() {

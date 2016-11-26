@@ -110,7 +110,7 @@
         </config-file>
 
         <!-- Add (rather than overwrite) a config-file block -->
-        <config-file target="AndroidManifest.xml" parent="./" add="true">
+        <config-file target="AndroidManifest.xml" parent="./" mode="add">
             <application android:name="customApplication"></application>
         </config-file>
 
@@ -152,16 +152,26 @@
         <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" xcconfigEnforce="false" />
         <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" xcconfigEnforce="true"/>
 
-        <!-- Set orientation on iPhone -->
-        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations">
+
+        <!-- By default, merge with existing array values -->
+        <config-file parent="LSApplicationQueriesSchemes" target="*-Info.plist">
+            <array>
+                <string>myapp</string>
+                <string>myapp2</string>
+                <string>myapp3</string>
+            </array>
+        </config-file>
+
+        <!-- Explicitly merge with existing array values -->
+        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations" mode="merge" >
             <array>
                 <string>UIInterfaceOrientationPortrait</string>
                 <string>UIInterfaceOrientationPortraitUpsideDown</string>
             </array>
         </config-file>
 
-        <!-- Set orientation on iPad -->
-        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations~ipad">
+        <!-- Replace existing values -->
+        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations~ipad" mode="replace">
             <array>
                 <string>UIInterfaceOrientationPortrait</string>
                 <string>UIInterfaceOrientationPortraitUpsideDown</string>
@@ -186,14 +196,7 @@
         </config-file>
 
 
-        <!-- By default, merge with existing values -->
-        <config-file parent="LSApplicationQueriesSchemes" target="*-Info.plist">
-            <array>
-                <string>myapp</string>
-                <string>myapp2</string>
-                <string>myapp3</string>
-            </array>
-        </config-file>
+
 
     </platform>
 </widget>
