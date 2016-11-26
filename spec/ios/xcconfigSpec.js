@@ -21,21 +21,26 @@ var xcconfigPath = {
 };
 var xcconfig = {};
 
-for(var config in xcconfigPath){
-    if(!fileHelper.fileExists(xcconfigPath[config])){
-        console.warn("iOS xcconfig not found at "+path.resolve(xcconfigPath[config]));
-        return;
-    }
-    xcconfig[config] = fs.readFileSync(xcconfigPath[config], 'utf-8');
-}
-
 
 function expectString(xcconfig, str){
     expect(xcconfig.indexOf(str) != -1).toEqual(true);
-};
+}
 
 
 describe("cordova-custom-config iOS xcconfig output", function() {
+
+    beforeAll(function(done) {
+        fileHelper.restoreOriginaliOSConfig();
+        fileHelper.runCordova('prepare ios', function(err, stdout, stderr){
+            for(var config in xcconfigPath){
+                if(!fileHelper.fileExists(xcconfigPath[config])){
+                    throw "iOS xcconfig not found at "+path.resolve(xcconfigPath[config]);
+                }
+                xcconfig[config] = fs.readFileSync(xcconfigPath[config], 'utf-8');
+            }
+            done();
+        });
+    });
 
     console.log("Running iOS xcconfig spec");
 

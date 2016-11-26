@@ -29,7 +29,7 @@ Then prepare the platforms to apply the custom config in `config.xml` to the pla
 
     $ cordova prepare
 
-# Testing
+# Testing [![Build Status](https://travis-ci.org/dpa99c/cordova-custom-config-example.png)](https://travis-ci.org/dpa99c/cordova-custom-config-example)
     
 To run the regression tests:
 

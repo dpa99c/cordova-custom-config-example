@@ -11,22 +11,19 @@
         Dave Alden
     </author>
     <content src="index.html" />
-
     <access origin="*" />
     <preference name="Fullscreen" value="false" />
 
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
 
-    <plugin name="cordova-custom-config" spec="~3.0.8" />
+    <plugin name="cordova-custom-config" spec="*" />
+
     <preference name="cordova-custom-config-autorestore" value="false" />
     <preference name="cordova-custom-config-stoponerror" value="true" />
     <preference name="cordova-custom-config-hook" value="after_prepare" />
     
     <engine name="android" spec="~5.2.2" />
     <platform name="android">
-
-        <hook type="after_platform_add" src="hooks/android/restoreOriginalConfig.js" />
-        <hook type="before_prepare" src="hooks/android/restoreOriginalConfig.js" />
 
         <!-- custom preferences examples -->
         <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.Material" />
@@ -114,7 +111,7 @@
         </config-file>
 
         <!-- Add (rather than overwrite) a config-file block -->
-        <config-file target="AndroidManifest.xml" parent="./" add="true">
+        <config-file target="AndroidManifest.xml" parent="./" mode="add">
             <application android:name="customApplication"></application>
         </config-file>
 
@@ -122,8 +119,6 @@
 
     <engine name="ios" spec="~4.2.1" />
     <platform name="ios">
-        <hook type="after_platform_add" src="hooks/ios/restoreOriginalConfig.js" />
-        <hook type="before_prepare" src="hooks/ios/restoreOriginalConfig.js" />
 
         <!-- Set various quote options -->
         <preference name="ios-XCBuildConfiguration-QUOTE_DEFAULT" value="YES" buildType="debug"/>
@@ -159,16 +154,26 @@
         <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" xcconfigEnforce="false" />
         <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" xcconfigEnforce="true"/>
 
-        <!-- Set orientation on iPhone -->
-        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations">
+
+        <!-- By default, merge with existing array values -->
+        <config-file parent="LSApplicationQueriesSchemes" target="*-Info.plist">
+            <array>
+                <string>myapp</string>
+                <string>myapp2</string>
+                <string>myapp3</string>
+            </array>
+        </config-file>
+
+        <!-- Explicitly merge with existing array values -->
+        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations" mode="merge" >
             <array>
                 <string>UIInterfaceOrientationPortrait</string>
                 <string>UIInterfaceOrientationPortraitUpsideDown</string>
             </array>
         </config-file>
 
-        <!-- Set orientation on iPad -->
-        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations~ipad">
+        <!-- Replace existing values -->
+        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations~ipad" mode="replace">
             <array>
                 <string>UIInterfaceOrientationPortrait</string>
                 <string>UIInterfaceOrientationPortraitUpsideDown</string>
@@ -191,6 +196,8 @@
         <config-file platform="ios" target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
             <string>This app will now only track your location when the screen is on and the app is displayed.</string>
         </config-file>
+
+
 
 
     </platform>

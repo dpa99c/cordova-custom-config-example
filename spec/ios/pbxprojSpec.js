@@ -22,23 +22,30 @@ if(!fileHelper.fileExists(pbxprojPath)){
     return;
 }
 
-var pbxproj = xcode.project(pbxprojPath);
-pbxproj = pbxproj.parseSync();
-var buildConfig = pbxproj.pbxXCBuildConfigurationSection();
-
-var debugBlock;
-var releaseBlock;
-
-for(var block in buildConfig){
-    if(buildConfig[block].name == 'Debug'){
-        debugBlock = buildConfig[block].buildSettings;
-    }
-    if(buildConfig[block].name == 'Release'){
-        releaseBlock = buildConfig[block].buildSettings;
-    }
-}
+var pbxproj, buildConfig, debugBlock, releaseBlock;
 
 describe("cordova-custom-config iOS pbxproj output", function() {
+
+    beforeAll(function(done) {
+        fileHelper.restoreOriginaliOSConfig();
+        fileHelper.runCordova('prepare ios', function(err, stdout, stderr){
+
+            pbxproj = xcode.project(pbxprojPath);
+            pbxproj = pbxproj.parseSync();
+            buildConfig = pbxproj.pbxXCBuildConfigurationSection();
+
+            for(var block in buildConfig){
+                if(buildConfig[block].name == 'Debug'){
+                    debugBlock = buildConfig[block].buildSettings;
+                }
+                if(buildConfig[block].name == 'Release'){
+                    releaseBlock = buildConfig[block].buildSettings;
+                }
+            }
+
+            done();
+        });
+    });
 
     console.log("Running iOS pbxproj spec");
 
