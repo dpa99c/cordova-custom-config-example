@@ -1,8 +1,9 @@
 os: osx
 osx_image: xcode8
 language:
-  - objective-c
   - android
+  - objective-c
+
 
 android:
   components:
