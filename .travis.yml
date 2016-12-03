@@ -10,6 +10,8 @@ android:
     - build-tools-25.0.0
     - android-25
 
+sudo: true
+
 notifications:
   email: false
 
