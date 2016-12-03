@@ -4,16 +4,15 @@ language:
   - android
   - objective-c
 
-
 android:
   components:
-    - tools               # will be built with latest version of Android SDK tools
+    - tools # to get the new `repository-XX.xml`
+    - tools # to install latest Android SDK tools X.Y.Z
     - platform-tools      # ''
-    - build-tools-24.0.1  # build tools version of project
-    - android-24          # Android SDK version of project
+    - build-tools-23.0.2  # build tools version of project
+    - android-23          # Android SDK version of project
 
 sudo: required
-dist: precise
 
 notifications:
   email: false
