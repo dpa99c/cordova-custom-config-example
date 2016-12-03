@@ -153,6 +153,10 @@
         <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" xcconfigEnforce="true"/>
 
 
+        <preference name="ios-xcodefunc" func="addResourceFile">
+            <arg type="String" value="www/img/logo.png" flag="path" />
+        </preference>
+
         <!-- By default, merge with existing array values -->
         <config-file parent="LSApplicationQueriesSchemes" target="*-Info.plist">
             <array>
