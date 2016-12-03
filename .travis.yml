@@ -2,16 +2,12 @@ os: osx
 osx_image: xcode8
 language: android
 
-
 android:
   components:
     - tools               # will be built with latest version of Android SDK tools
     - platform-tools      # ''
     - build-tools-24.0.1  # build tools version of project
     - android-24          # Android SDK version of project
-
-sudo: required
-dist: precise
 
 notifications:
   email: false
