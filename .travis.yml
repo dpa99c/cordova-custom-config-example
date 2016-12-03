@@ -2,16 +2,7 @@ os: osx
 osx_image: xcode8
 dist: osx
 
-language:
-- objective-c
-- android
-
-android:
-  components:
-    - tools
-    - platform-tools
-    - build-tools-23.0.1
-    - android-23
+language: objective-c
 
 sudo: false
 
@@ -24,6 +15,8 @@ before_install:
 before_script:
   - brew update; brew install -v android-sdk;
   - export ANDROID_HOME=/usr/local/opt/android-sdk
+  - android list sdk --all
+  - android update sdk -u -a -t 24
   - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
   - npm install -g cordova
   - cordova platform add ios@4.3.0
