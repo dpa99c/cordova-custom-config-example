@@ -4,10 +4,11 @@ language: android
 
 android:
   components:
-    - tools               # will be built with latest version of Android SDK tools
-    - platform-tools      # ''
-    - build-tools-24.0.1  # build tools version of project
-    - android-24          # Android SDK version of project
+    - tools
+    - platform-tools
+    - tools
+    - build-tools-25.0.0
+    - android-25
 
 notifications:
   email: false
