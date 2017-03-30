@@ -13,7 +13,7 @@ before_install:
 
   
 before_script:
-  - brew update; brew cask install -v android-sdk;
+  - brew update; brew cask install android-sdk;
   - export ANDROID_HOME=/usr/local/opt/android-sdk
   - android list sdk --all
   - echo y | android update sdk --no-ui --filter "tools"
