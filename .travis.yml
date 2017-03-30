@@ -16,10 +16,10 @@ before_script:
   - brew update; brew cask install android-sdk;
   - export ANDROID_HOME=/usr/local/opt/android-sdk
   - android list sdk --all --use-sdk-wrapper
-  - echo y | android update sdk --no-ui --filter "tools"
-  - echo y | android update sdk --no-ui --filter "platform-tools"
-  - echo y | android update sdk --no-ui --filter "build-tools-25.0.2"
-  - echo y | android update sdk --no-ui --filter "android-25"
+  - echo y | android update sdk --no-ui --filter "tools" --use-sdk-wrapper
+  - echo y | android update sdk --no-ui --filter "platform-tools" --use-sdk-wrapper
+  - echo y | android update sdk --no-ui --filter "build-tools-25.0.2" --use-sdk-wrapper
+  - echo y | android update sdk --no-ui --filter "android-25" --use-sdk-wrapper
   - mkdir "$ANDROID_HOME/licenses" || true
   - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
   - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
