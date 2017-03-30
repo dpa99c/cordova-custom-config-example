@@ -18,7 +18,7 @@ before_script:
   - android list sdk --all
   - echo y | android update sdk --no-ui --filter "tools"
   - echo y | android update sdk --no-ui --filter "platform-tools"
-  - echo y | android update sdk --no-ui --filter "build-tools-25.0.1"
+  - echo y | android update sdk --no-ui --filter "build-tools-25.0.2"
   - echo y | android update sdk --no-ui --filter "android-25"
   - mkdir "$ANDROID_HOME/licenses" || true
   - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
