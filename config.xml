@@ -199,6 +199,10 @@
             <string>This app will now only track your location when the screen is on and the app is displayed.</string>
         </config-file>
 
+        <resource type="image" catalog="custom" src="resources/ios/custom-icons/back@1x.png" scale="1x" idiom="universal" />
+        <resource type="image" catalog="custom" src="resources/ios/custom-icons/back@2x.png" scale="2x" idiom="universal" />
+        <resource type="image" catalog="custom" src="resources/ios/custom-icons/back@3x.png" scale="3x" idiom="universal" />
+
 
 
 
