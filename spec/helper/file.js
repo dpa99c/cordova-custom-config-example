@@ -76,14 +76,35 @@ var fileHelper = (function(){
         },
         restoreOriginaliOSConfig: function(){
             var projectName = fileUtils.getProjectName();
+            var specRoot = 'spec/ios/';
+            var platformRoot = 'platforms/ios/';
+            var platformProjectDir = platformRoot + projectName + '/';
 
-            fileUtils.copySync('spec/ios/'+projectName+'-Info.plist', 'platforms/ios/'+projectName+'/'+projectName+'-Info.plist');
-            fileUtils.copySync('spec/ios/project.pbxproj', 'platforms/ios/'+projectName+'.xcodeproj/project.pbxproj');
-            fileUtils.copySync('spec/ios/build.xcconfig', 'platforms/ios/cordova/build.xcconfig');
-            fileUtils.copySync('spec/ios/build-debug.xcconfig', 'platforms/ios/cordova/build-debug.xcconfig');
-            fileUtils.copySync('spec/ios/build-extras.xcconfig', 'platforms/ios/cordova/build-extras.xcconfig');
-            fileUtils.copySync('spec/ios/build-release.xcconfig', 'platforms/ios/cordova/build-release.xcconfig');
+            fileUtils.copySync(specRoot+projectName+'-Info.plist', platformProjectDir+projectName+'-Info.plist');
+            fileUtils.copySync(specRoot+'project.pbxproj', platformRoot+projectName+'.xcodeproj/project.pbxproj');
+            fileUtils.copySync(specRoot+'build.xcconfig', platformRoot+'cordova/build.xcconfig');
+            fileUtils.copySync(specRoot+'build-debug.xcconfig', platformRoot+'cordova/build-debug.xcconfig');
+            fileUtils.copySync(specRoot+'build-extras.xcconfig', platformRoot+'cordova/build-extras.xcconfig');
+            fileUtils.copySync(specRoot+'build-release.xcconfig', platformRoot+'cordova/build-release.xcconfig');
+
+            console.log("remove: "+platformProjectDir+'Images.xcassets/custom.imageset');
+            fileHelper.deleteFolderRecursive(path.resolve(platformProjectDir+'Images.xcassets/custom.imageset'));
             console.log("Restored original iOS platform config");
+        },
+        deleteFolderRecursive: function(path) {
+            var files = [];
+            if( fs.existsSync(path) ) {
+                files = fs.readdirSync(path);
+                files.forEach(function(file,index){
+                    var curPath = path + "/" + file;
+                    if(fs.lstatSync(curPath).isDirectory()) { // recurse
+                        deleteFolderRecursive(curPath);
+                    } else { // delete file
+                        fs.unlinkSync(curPath);
+                    }
+                });
+                fs.rmdirSync(path);
+            }
         }
     };
 
