@@ -36,7 +36,7 @@ var fileHelper = (function(){
         fileExists: function(filepath){
             var exists;
             try {
-                fs.accessSync(filepath, fs.F_OK);
+                fs.accessSync(path.resolve(filepath), fs.F_OK);
                 exists = true;
             } catch (e) {
                 exists = false;
@@ -87,7 +87,6 @@ var fileHelper = (function(){
             fileUtils.copySync(specRoot+'build-extras.xcconfig', platformRoot+'cordova/build-extras.xcconfig');
             fileUtils.copySync(specRoot+'build-release.xcconfig', platformRoot+'cordova/build-release.xcconfig');
 
-            console.log("remove: "+platformProjectDir+'Images.xcassets/custom.imageset');
             fileHelper.deleteFolderRecursive(path.resolve(platformProjectDir+'Images.xcassets/custom.imageset'));
             console.log("Restored original iOS platform config");
         },
