@@ -74,4 +74,8 @@ describe("cordova-custom-config iOS plist output", function() {
         expect(infoPlist['NSLocationAlwaysUsageDescription']).toEqual('This app requires constant access to your location in order to track your position, even when the screen is off.');
         expect(infoPlist['NSLocationWhenInUseUsageDescription']).toEqual('This app will now only track your location when the screen is on and the app is displayed.');
     });
+
+    it("should delete exist key/value pairs when mode=\"delete\"", function() {
+        expect(infoPlist['DeleteMyKey']).toBeFalsy();
+    });
 });

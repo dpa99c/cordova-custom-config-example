@@ -1,10 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget
-        id="uk.co.workingedge.phonegap.plugins.example.customconfig"
-        version="0.0.1"
-        xmlns="http://www.w3.org/ns/widgets"
-        xmlns:cdv="http://cordova.apache.org/ns/1.0"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<widget id="uk.co.workingedge.phonegap.plugins.example.customconfig" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Custom config plugin example</name>
     <description>An example app that demonstrates use of cordova-custom-config plugin</description>
     <author email="dave@workingedge.co.uk" href="http://www.workingedge.co.uk/dave">
@@ -13,60 +8,35 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="Fullscreen" value="false" />
-
-    <plugin name="cordova-plugin-whitelist" version="1.0.0" />
-
-    <plugin name="cordova-custom-config" spec="*" />
-
     <preference name="cordova-custom-config-autorestore" value="false" />
     <preference name="cordova-custom-config-stoponerror" value="true" />
     <preference name="cordova-custom-config-hook" value="after_prepare" />
-
     <platform name="android">
-
-        <!-- custom preferences examples -->
         <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.Material" />
         <preference name="android-manifest/application/activity/@android:windowSoftInputMode" value="stateVisible" />
         <preference name="android-manifest/@android:installLocation" value="somewhere" />
         <preference name="android-manifest/application/@android:hardwareAccelerated" value="custom" />
         <preference name="android-manifest/@android:hardwareAccelerated" value="custom" />
         <preference name="android-manifest/application/activity/@android:configChanges" value="orientation" />
-
-        <!-- specify activity name -->
         <preference name="android-manifest/application/activity[@android:name='MainActivity']/@android:launchMode" value="custom" />
-
-        <!-- Delete an element -->
-        <preference name="android-manifest/application/activity[@android:name='DeleteMe']" delete="true" />
-
-        <!-- Delete an element that doesn't exists -->
-        <preference name="android-manifest/application/activity[@android:name='NotPresent']" delete="true" />
-
-        <!-- These preferences are actually available in Cordova by default although not currently documented -->
+        <preference delete="true" name="android-manifest/application/activity[@android:name='DeleteMe']" />
+        <preference delete="true" name="android-manifest/application/activity[@android:name='NotPresent']" />
         <preference name="android-minSdkVersion" value="101" />
         <preference name="android-maxSdkVersion" value="102" />
         <preference name="android-targetSdkVersion" value="103" />
-
-        <!-- root-level config-file block -->
-        <config-file target="AndroidManifest.xml" parent="/*">
-
+        <config-file parent="/*" target="AndroidManifest.xml">
             <supports-screens android:anyDensity="custom" android:largeScreens="custom" android:normalScreens="custom" android:resizeable="custom" android:smallScreens="custom" android:xlargeScreens="custom" />
-
-            <uses-permission android:name="android.permission.READ_CONTACTS" android:maxSdkVersion="15" />
+            <uses-permission android:maxSdkVersion="15" android:name="android.permission.READ_CONTACTS" />
             <uses-permission android:name="android.permission.WRITE_CONTACTS" />
             <uses-permission android:name="android.permission.CAMERA" />
-
             <uses-feature android:name="android.hardware.camera" />
             <uses-feature android:name="android.hardware.camera.autofocus" />
-
             <permission android:name="com.mobiledonky.example.push.permission.C2D_MESSAGE" android:protectionLevel="signature" />
             <permission android:name="com.mobiledonky.example.push.permission.C2D_TEST" android:protectionLevel="signature" />
         </config-file>
-
-        <!-- application-level config-file block -->
-        <config-file target="AndroidManifest.xml" parent="./application">
-            <activity android:label="@string/title_activity_photo_gps" android:name="com.example.PhotoGpsActivity" android:screenOrientation="portrait" android:windowActionBar="false"/>
+        <config-file parent="./application" target="AndroidManifest.xml">
+            <activity android:label="@string/title_activity_photo_gps" android:name="com.example.PhotoGpsActivity" android:screenOrientation="portrait" android:windowActionBar="false" />
             <activity android:name="com.example.NfcActivity" android:theme="@android:style/Theme.Black.NoTitleBar" />
-
             <receiver android:name="net.donky.core.gcm.DonkyGcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
                 <intent-filter>
                     <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -78,20 +48,14 @@
                     <action android:name="net.donky.core.ACTION_SYNCHRONISE" />
                 </intent-filter>
             </receiver>
-
             <service android:exported="false" android:name="net.donky.core.gcm.DonkyGcmIntentService" />
             <service android:exported="false" android:name="net.donky.core.DonkyIntentService" />
-
             <uses-library android:name="android.test.runner" />
             <uses-library android:name="android.test.harness" />
-
             <activity android:name="FirstActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
             <activity android:name="SecondActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
-
         </config-file>
-
-        <!-- Cordova activity-level config-file block -->
-        <config-file target="AndroidManifest.xml" parent="./application/activity/[@android:name='MainActivity']">
+        <config-file parent="./application/activity/[@android:name='MainActivity']" target="AndroidManifest.xml">
             <intent-filter android:label="custom_1">
                 <action android:name="android.intent.action.custom_1" />
             </intent-filter>
@@ -104,60 +68,36 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:host="com.example.ex1" android:scheme="ex" />
             </intent-filter>
-
             <meta-data android:name="fish" android:value="@string/shark" />
             <meta-data android:name="bird" android:value="@string/eagle" />
         </config-file>
-
-        <!-- Add (rather than overwrite) a config-file block -->
-        <config-file target="AndroidManifest.xml" parent="./" mode="add">
-            <application android:name="customApplication"></application>
+        <config-file mode="add" parent="./" target="AndroidManifest.xml">
+            <application android:name="customApplication" />
         </config-file>
-
     </platform>
-
     <platform name="ios">
-
-        <!-- Set various quote options -->
-        <preference name="ios-XCBuildConfiguration-QUOTE_DEFAULT" value="YES" buildType="debug"/>
-        <preference name="ios-XCBuildConfiguration-QUOTE_BOTH" value="YES" quote="both" buildType="debug"/>
-        <preference name="ios-XCBuildConfiguration-QUOTE_KEY" value="YES" quote="key" buildType="debug"/>
-        <preference name="ios-XCBuildConfiguration-QUOTE_VALUE" value="YES" quote="value" buildType="debug"/>
-        <preference name="ios-XCBuildConfiguration-QUOTE_NONE" value="YES" quote="none" buildType="debug"/>
-
-        <!-- Set various buildType options -->
-        <preference name="ios-XCBuildConfiguration-BUiLD_TYPE_DEFAULT" value="YES"/>
-        <preference name="ios-XCBuildConfiguration-BUiLD_TYPE_DEBUG" value="YES" buildType="debug"/>
-        <preference name="ios-XCBuildConfiguration-BUiLD_TYPE_RELEASE" value="YES" quote="both" buildType="release"/>
-
-        <!-- Set ENABLE_BITCODE to YES in XCode project file override NO value in /ios/cordova/build.xcconfig -->
+        <preference buildType="debug" name="ios-XCBuildConfiguration-QUOTE_DEFAULT" value="YES" />
+        <preference buildType="debug" name="ios-XCBuildConfiguration-QUOTE_BOTH" quote="both" value="YES" />
+        <preference buildType="debug" name="ios-XCBuildConfiguration-QUOTE_KEY" quote="key" value="YES" />
+        <preference buildType="debug" name="ios-XCBuildConfiguration-QUOTE_VALUE" quote="value" value="YES" />
+        <preference buildType="debug" name="ios-XCBuildConfiguration-QUOTE_NONE" quote="none" value="YES" />
+        <preference name="ios-XCBuildConfiguration-BUiLD_TYPE_DEFAULT" value="YES" />
+        <preference buildType="debug" name="ios-XCBuildConfiguration-BUiLD_TYPE_DEBUG" value="YES" />
+        <preference buildType="release" name="ios-XCBuildConfiguration-BUiLD_TYPE_RELEASE" quote="both" value="YES" />
         <preference name="ios-XCBuildConfiguration-ENABLE_BITCODE" value="YES" />
-
-        <!-- Set deploy target SDKs for release and debug builds -->
-        <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="9.1" buildType="debug" />
-        <preference name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="7.0" buildType="release" />
-
-
-        <!-- Quote attribute has no effect in /ios/cordova/*.xcconfig -->
-        <preference name="ios-XCBuildConfiguration-QUOTE_BOTH" value="YES" quote="both" buildType="debug" xcconfigEnforce="true" />
-
-        <!-- Override *.xcconfig -->
+        <preference buildType="debug" name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="9.1" />
+        <preference buildType="release" name="ios-XCBuildConfiguration-IPHONEOS_DEPLOYMENT_TARGET" value="7.0" />
+        <preference buildType="debug" name="ios-XCBuildConfiguration-QUOTE_BOTH" quote="both" value="YES" xcconfigEnforce="true" />
         <preference name="ios-XCBuildConfiguration-TARGETED_DEVICE_FAMILY" value="1,2,3" />
-
-        <!-- Custom code signing profiles (overriding those in /ios/cordova/*.xcconfig -->
-        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" buildType="debug" xcconfigEnforce="true" />
-        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" buildType="debug" />
-        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" buildType="debug" />
-        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" />
-        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" xcconfigEnforce="false" />
-        <preference name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" buildType="release" xcconfigEnforce="true"/>
-
-
-        <preference name="ios-xcodefunc" func="addResourceFile">
-            <arg type="String" value="www/img/logo.png" flag="path" />
+        <preference buildType="debug" name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" xcconfigEnforce="true" />
+        <preference buildType="debug" name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" />
+        <preference buildType="debug" name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" />
+        <preference buildType="release" name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" />
+        <preference buildType="release" name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" xcconfigEnforce="false" />
+        <preference buildType="release" name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos9.1]" value="iPhone Distribution: Working Edge Ltd (556F3DRHUD)" xcconfigEnforce="true" />
+        <preference func="addResourceFile" name="ios-xcodefunc">
+            <arg flag="path" type="String" value="www/img/logo.png" />
         </preference>
-
-        <!-- By default, merge with existing array values -->
         <config-file parent="LSApplicationQueriesSchemes" target="*-Info.plist">
             <array>
                 <string>myapp</string>
@@ -165,44 +105,36 @@
                 <string>myapp3</string>
             </array>
         </config-file>
-
-        <!-- Explicitly merge with existing array values -->
-        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations" mode="merge" >
+        <config-file mode="merge" parent="UISupportedInterfaceOrientations" platform="ios" target="*-Info.plist">
             <array>
                 <string>UIInterfaceOrientationPortrait</string>
                 <string>UIInterfaceOrientationPortraitUpsideDown</string>
             </array>
         </config-file>
-
-        <!-- Replace existing values -->
-        <config-file platform="ios" target="*-Info.plist" parent="UISupportedInterfaceOrientations~ipad" mode="replace">
+        <config-file mode="replace" parent="UISupportedInterfaceOrientations~ipad" platform="ios" target="*-Info.plist">
             <array>
                 <string>UIInterfaceOrientationPortrait</string>
                 <string>UIInterfaceOrientationPortraitUpsideDown</string>
             </array>
         </config-file>
-
-        <!-- Set background location mode -->
-        <config-file platform="ios" target="*-Info.plist" parent="UIBackgroundModes">
+        <config-file mode="delete" parent="DeleteMyKey" platform="ios" target="*-Info.plist" />
+        <config-file parent="UIBackgroundModes" platform="ios" target="*-Info.plist">
             <array>
                 <string>location</string>
             </array>
         </config-file>
-
-        <!-- Set message displayed when app requests constant location updates -->
-        <config-file platform="ios" target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+        <config-file parent="NSLocationAlwaysUsageDescription" platform="ios" target="*-Info.plist">
             <string>This app requires constant access to your location in order to track your position, even when the screen is off.</string>
         </config-file>
-
-        <!-- Set message displayed when app requests foreground location updates -->
-        <config-file platform="ios" target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+        <config-file parent="NSLocationWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
             <string>This app will now only track your location when the screen is on and the app is displayed.</string>
         </config-file>
-
-        <!-- Custom image asset catalog -->
-        <resource type="image" catalog="custom" src="resources/ios/custom-icons/back@1x.png" scale="1x" idiom="universal" />
-        <resource type="image" catalog="custom" src="resources/ios/custom-icons/back@2x.png" scale="2x" idiom="iphone" />
-        <resource type="image" catalog="custom" src="resources/ios/custom-icons/back@3x.png" scale="3x" idiom="ipad" />
-
+        <resource catalog="custom" idiom="universal" scale="1x" src="resources/ios/custom-icons/back@1x.png" type="image" />
+        <resource catalog="custom" idiom="iphone" scale="2x" src="resources/ios/custom-icons/back@2x.png" type="image" />
+        <resource catalog="custom" idiom="ipad" scale="3x" src="resources/ios/custom-icons/back@3x.png" type="image" />
     </platform>
+    <engine name="android" />
+    <engine name="ios" />
+    <plugin name="cordova-custom-config" spec="*" />
+    <plugin name="cordova-plugin-whitelist" spec="1.0.0" />
 </widget>

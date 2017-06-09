@@ -57,5 +57,7 @@
         <string>fbauth2</string>
         <string>fbshareextension</string>
     </array>
+    <key>DeleteMyKey</key>
+    <string>DeleteMyValue</string>
   </dict>
 </plist>
