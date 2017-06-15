@@ -11,6 +11,8 @@
     <preference name="cordova-custom-config-autorestore" value="false" />
     <preference name="cordova-custom-config-stoponerror" value="true" />
     <preference name="cordova-custom-config-hook" value="after_prepare" />
+
+    <engine name="android" />
     <platform name="android">
         <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.Material" />
         <preference name="android-manifest/application/activity/@android:windowSoftInputMode" value="stateVisible" />
@@ -75,6 +77,8 @@
             <application android:name="customApplication" />
         </config-file>
     </platform>
+
+    <engine name="ios" />
     <platform name="ios">
         <preference buildType="debug" name="ios-XCBuildConfiguration-QUOTE_DEFAULT" value="YES" />
         <preference buildType="debug" name="ios-XCBuildConfiguration-QUOTE_BOTH" quote="both" value="YES" />
@@ -133,8 +137,7 @@
         <resource catalog="custom" idiom="iphone" scale="2x" src="resources/ios/custom-icons/back@2x.png" type="image" />
         <resource catalog="custom" idiom="ipad" scale="3x" src="resources/ios/custom-icons/back@3x.png" type="image" />
     </platform>
-    <engine name="android" />
-    <engine name="ios" />
+
     <plugin name="cordova-custom-config" spec="*" />
-    <plugin name="cordova-plugin-whitelist" spec="1.0.0" />
+    <plugin name="cordova-plugin-whitelist" spec="*" />
 </widget>
