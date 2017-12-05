@@ -21,7 +21,7 @@
     <preference name="cordova-custom-config-autorestore" value="false" />
     <preference name="cordova-custom-config-stoponerror" value="true" />
     <preference name="cordova-custom-config-hook" value="after_prepare" />
-    <preference name="cordova-custom-config-parse-unprefixed" value="false" />
+    <preference name="cordova-custom-config-parse_unprefixed" value="false" />
 
     <engine name="android" spec="^7.0.0" />
     <platform name="android">
