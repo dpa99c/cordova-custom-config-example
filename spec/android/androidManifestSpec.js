@@ -10,13 +10,12 @@ var xmlHelper = require(path.resolve('spec/helper/xml.js'))();
 /**
  * Globals
  */
-var manifestPath = 'platforms/android/AndroidManifest.xml';
+
+
+var manifestPath = fileHelper.getAndroidManifestPath();
 var manifest;
 
-if(!fileHelper.fileExists(manifestPath)){
-    console.warn("Android manifest not found at "+path.resolve(manifestPath));
-    return;
-}
+if(!manifestPath) return console.warn("Can't find AndroidManifest.xml in platforms/android");
 
 console.log("Running Android manifest spec");
 
@@ -52,18 +51,6 @@ describe("cordova-custom-config android output after 1 prepare operations", func
 
     it("should delete the specified element", function() {
         xmlHelper.assertXpathNotExists(manifest, './application/activity[@android:name="DeleteMe"]');
-    });
-
-    it("should override the minSdkVersion", function() {
-        xmlHelper.assertXpathExists(manifest, './uses-sdk[@android:minSdkVersion="101"]');
-    });
-
-    it("should override the maxSdkVersion", function() {
-        xmlHelper.assertXpathExists(manifest, './uses-sdk[@android:maxSdkVersion="102"]');
-    });
-
-    it("should override the targetSdkVersion", function() {
-        xmlHelper.assertXpathExists(manifest, './uses-sdk[@android:targetSdkVersion="103"]');
     });
 
     it("should insert root-level supports-screens", function() {
@@ -148,18 +135,6 @@ describe("cordova-custom-config android output after 2 prepare operations", func
 
     it("should delete the specified element", function() {
         xmlHelper.assertXpathNotExists(manifest, './application/activity[@android:name="DeleteMe"]');
-    });
-
-    it("should override the minSdkVersion", function() {
-        xmlHelper.assertXpathExists(manifest, './uses-sdk[@android:minSdkVersion="101"]');
-    });
-
-    it("should override the maxSdkVersion", function() {
-        xmlHelper.assertXpathExists(manifest, './uses-sdk[@android:maxSdkVersion="102"]');
-    });
-
-    it("should override the targetSdkVersion", function() {
-        xmlHelper.assertXpathExists(manifest, './uses-sdk[@android:targetSdkVersion="103"]');
     });
 
     it("should insert root-level supports-screens", function() {

@@ -15,9 +15,14 @@ var fileUtils = require(path.resolve('plugins/cordova-custom-config/hooks/fileUt
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
 var projectName = fileUtils.getProjectName();
-var platformProjectDir = 'platforms/ios/'+projectName+'/';
+var platformPath = 'platforms/ios/';
+var platformProjectDir = platformPath + projectName+'/';
 var assetsDir = platformProjectDir+'Images.xcassets/';
 var customAssetsDir = assetsDir+'custom.imageset/';
+
+if(!fileHelper.fileExists(platformPath)){
+    return console.warn("Can't find iOS platform in platforms/ios");
+}
 
 describe("cordova-custom-config iOS resource output", function() {
 

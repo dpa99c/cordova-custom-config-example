@@ -21,8 +21,7 @@ var plistPath = 'platforms/ios/'+projectName+'/'+projectName+'-Info.plist';
 var infoPlist;
 
 if(!fileHelper.fileExists(plistPath)){
-    console.warn("iOS plist not found at "+path.resolve(plistPath));
-    return;
+    return console.warn("iOS plist not found at "+path.resolve(plistPath));
 }
 
 describe("cordova-custom-config iOS plist output", function() {
