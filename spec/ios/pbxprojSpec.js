@@ -18,8 +18,7 @@ var projectName = fileUtils.getProjectName();
 var pbxprojPath = 'platforms/ios/'+projectName+'.xcodeproj/project.pbxproj';
 
 if(!fileHelper.fileExists(pbxprojPath)){
-    console.warn("iOS pbxproj not found at "+path.resolve(pbxprojPath));
-    return;
+    return console.warn("iOS pbxproj not found at "+path.resolve(pbxprojPath));
 }
 
 var pbxproj, buildConfig, debugBlock, releaseBlock;

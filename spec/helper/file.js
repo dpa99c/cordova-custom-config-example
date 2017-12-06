@@ -12,6 +12,9 @@ var fileHelper = (function(){
     var et = require('elementtree');
     var exec = require('child_process').exec;
 
+    var cordovaAndroid6Path =  'platforms/android/AndroidManifest.xml';
+    var cordovaAndroid7Path = 'platforms/android/app/src/main/AndroidManifest.xml';
+
     var fileUtils;
 
     function init(){
@@ -70,8 +73,17 @@ var fileHelper = (function(){
                 onFinish(err, stdout, stderr);
             });
         },
+        getAndroidManifestPath: function(){
+            var manifestPath;
+            if(fileHelper.fileExists(cordovaAndroid7Path)){
+                manifestPath = cordovaAndroid7Path;
+            }else if(fileHelper.fileExists(cordovaAndroid6Path)){
+                manifestPath = cordovaAndroid6Path;
+            }
+            return manifestPath;
+        },
         restoreOriginalAndroidConfig: function(){
-            fileUtils.copySyncRelative('spec/android/AndroidManifest.xml', 'platforms/android/AndroidManifest.xml');
+            fileUtils.copySyncRelative('spec/android/AndroidManifest.xml', fileHelper.getAndroidManifestPath());
             console.log("Restored original Android platform config");
         },
         restoreOriginaliOSConfig: function(){

@@ -13,11 +13,12 @@ var fileUtils = require(path.resolve('plugins/cordova-custom-config/hooks/fileUt
 /**
  * Globals
  */
+var platformPath = 'platforms/ios/';
 var xcconfigPath = {
-    default: 'platforms/ios/cordova/build.xcconfig',
-    debug: 'platforms/ios/cordova/build-debug.xcconfig',
-    release: 'platforms/ios/cordova/build-release.xcconfig',
-    extras: 'platforms/ios/cordova/build-extras.xcconfig'
+    default: platformPath + 'cordova/build.xcconfig',
+    debug: platformPath + 'cordova/build-debug.xcconfig',
+    release: platformPath + 'cordova/build-release.xcconfig',
+    extras: platformPath + 'cordova/build-extras.xcconfig'
 };
 var xcconfig = {};
 
@@ -26,6 +27,9 @@ function expectString(xcconfig, str){
     expect(xcconfig.indexOf(str) != -1).toEqual(true);
 }
 
+if(!fileHelper.fileExists(platformPath)){
+    return console.warn("Can't find iOS platform in platforms/ios");
+}
 
 describe("cordova-custom-config iOS xcconfig output", function() {
 

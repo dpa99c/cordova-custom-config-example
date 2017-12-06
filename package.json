@@ -1,34 +1,36 @@
 {
-    "version": "3.3.0",
-    "name": "cordova-custom-config-example",
-    "cordova_name": "cordova-custom-config-example",
-    "description": "Example project to illustrate/validate usage of cordova-custom-config Cordova/Phonegap plugin",
-    "author": "Dave Alden",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dpa99c/cordova-custom-config-example.git"
-    },
-    "cordova": {
-        "id": "cordova-custom-config-example",
-        "platforms": [
-            "android",
-            "ios"
-        ],
-        "plugins": {
-            "cordova-custom-config": {},
-            "cordova-plugin-whitelist": {}
-        }
-    },
-    "issue": "https://github.com/dpa99c/cordova-custom-config-example/issues",
-    "scripts": {
-        "test": "npm install && npm run-script jshint && cordova prepare && jasmine",
-        "jshint": "jshint plugins/cordova-custom-config/hooks"
-    },
-    "dependencies": {
-        "cordova-custom-config": "*",
-        "jasmine": "^2.5.2",
-        "jshint": "^2.6.0",
-        "cordova-plugin-whitelist": "1.0.0"
+  "version": "3.3.0",
+  "name": "cordova-custom-config-example",
+  "cordova_name": "cordova-custom-config-example",
+  "description": "Example project to illustrate/validate usage of cordova-custom-config Cordova/Phonegap plugin",
+  "author": "Dave Alden",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dpa99c/cordova-custom-config-example.git"
+  },
+  "cordova": {
+    "id": "cordova-custom-config-example",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "plugins": {
+      "cordova-custom-config": {},
+      "cordova-plugin-whitelist": {}
     }
+  },
+  "issue": "https://github.com/dpa99c/cordova-custom-config-example/issues",
+  "scripts": {
+    "test": "npm install && npm run-script jshint && cordova prepare && jasmine",
+    "jshint": "jshint plugins/cordova-custom-config/hooks"
+  },
+  "dependencies": {
+    "cordova-android": "^7.0.0",
+    "cordova-ios": "^4.5.4",
+    "cordova-custom-config": "*",
+    "cordova-plugin-whitelist": "1.0.0",
+    "jasmine": "^2.5.2",
+    "jshint": "^2.6.0"
+  }
 }
