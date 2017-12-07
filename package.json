@@ -1,5 +1,5 @@
 {
-  "version": "3.3.0",
+  "version": "5.0.0",
   "name": "cordova-custom-config-example",
   "cordova_name": "cordova-custom-config-example",
   "description": "Example project to illustrate/validate usage of cordova-custom-config Cordova/Phonegap plugin",
@@ -28,7 +28,7 @@
   "dependencies": {
     "cordova-android": "^7.0.0",
     "cordova-ios": "^4.5.4",
-    "cordova-custom-config": "*",
+    "cordova-custom-config": "https://github.com/dpa99c/cordova-custom-config#dev",
     "cordova-plugin-whitelist": "1.0.0",
     "jasmine": "^2.5.2",
     "jshint": "^2.6.0"
