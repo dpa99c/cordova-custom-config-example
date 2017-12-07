@@ -1,5 +1,5 @@
 {
-  "version": "3.3.0",
+  "version": "5.0.0",
   "name": "cordova-custom-config-example",
   "cordova_name": "cordova-custom-config-example",
   "description": "Example project to illustrate/validate usage of cordova-custom-config Cordova/Phonegap plugin",
