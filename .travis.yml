@@ -1,32 +1,25 @@
-os: osx
-osx_image: xcode9.2
-dist: osx
+matrix:
+  include:
+    - language: android
+      jdk: oraclejdk8
+      android:
+        components:
+          - tools
+          - android-27
+          - build-tools-27.0.3
+      before_script:
+        - npm install -g cordova
+        - cordova platform add android@7
+      script:
+        - npm test
 
-language: objective-c
-
-sudo: false
-
+    - language: objective-c
+      os: osx
+      osx_image: xcode9.2
+      before_script:
+        - npm install -g cordova
+        - cordova platform add ios@4
+      script:
+        - npm test
 notifications:
   email: false
-
-before_install:
-
-  
-before_script:
-  - brew update; brew cask install android-sdk;
-  - export ANDROID_HOME=/usr/local/Caskroom/android-sdk
-  - android list sdk --all --use-sdk-wrapper
-  - echo y | android update sdk --no-ui --filter "tools" --use-sdk-wrapper
-  - echo y | android update sdk --no-ui --filter "platform-tools" --use-sdk-wrapper
-  - echo y | android update sdk --no-ui --filter "build-tools-27.0.1" --use-sdk-wrapper
-  - echo y | android update sdk --no-ui --filter "android-26" --use-sdk-wrapper
-  - mkdir "$ANDROID_HOME/licenses" || true
-  - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
-  - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
-  - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
-  - npm install -g cordova
-  - cordova platform add ios@4
-  - cordova platform add android@7
-
-script:
-  - npm test
