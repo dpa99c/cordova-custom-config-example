@@ -25,12 +25,19 @@
     "lint": "jshint plugins/cordova-custom-config/hooks"
   },
   "dependencies": {
-    "cordova-custom-config": "*"
+    "cordova-custom-config": "^5.1.2"
   },
   "devDependencies": {
+    "cordova": "^13.0.0",
     "cordova-android": "^15.1.0",
     "cordova-ios": "^8.1.1",
-    "jasmine": "^2.5.2",
-    "jshint": "^2.6.0"
+    "jasmine": "^7.0.0",
+    "jshint": "^2.13.6",
+    "picocolors": "^1.1.1"
+  },
+  "overrides": {
+    "lodash": "^4.18.1",
+    "minimatch": "^3.1.5",
+    "uuid": "^11.1.1"
   }
 }
