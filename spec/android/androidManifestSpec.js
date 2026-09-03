@@ -13,7 +13,11 @@ var xmlHelper = require(path.resolve('spec/helper/xml.js'))();
 
 
 var manifestPath = fileHelper.getAndroidManifestPath();
+var stringsPath = 'platforms/android/app/src/main/res/values/cdv_strings.xml';
+var colorsPath = 'platforms/android/app/src/main/res/values/cdv_colors.xml';
 var manifest;
+var strings;
+var colors;
 
 if(!manifestPath) return console.warn("Can't find AndroidManifest.xml in platforms/android");
 
@@ -25,6 +29,8 @@ describe("cordova-custom-config android output after 1 prepare operations", func
         fileHelper.restoreOriginalAndroidConfig();
         fileHelper.runCordova('prepare android', function(err, stdout, stderr){
             manifest = fileHelper.parseElementtreeSync(manifestPath);
+            strings = fileHelper.parseElementtreeSync(stringsPath);
+            colors = fileHelper.parseElementtreeSync(colorsPath);
             done();
         });
     });
@@ -102,6 +108,14 @@ describe("cordova-custom-config android output after 1 prepare operations", func
     it("should add rather than replace the config-file root element when add=\"true\"", function() {
         xmlHelper.assertXpathExists(manifest, './application', 2);
     });
+
+    it("should insert a string into the targeted Android resource file", function() {
+        xmlHelper.assertXpathExists(strings, './string[@name="custom_config_string"]');
+    });
+
+    it("should insert a color into the targeted Android resource file", function() {
+        xmlHelper.assertXpathExists(colors, './color[@name="custom_config_color"]');
+    });
 });
 
 describe("cordova-custom-config android output after 2 prepare operations", function() {
@@ -109,6 +123,8 @@ describe("cordova-custom-config android output after 2 prepare operations", func
     beforeAll(function(done) {
         fileHelper.runCordova('prepare android', function(err, stdout, stderr){
             manifest = fileHelper.parseElementtreeSync(manifestPath);
+            strings = fileHelper.parseElementtreeSync(stringsPath);
+            colors = fileHelper.parseElementtreeSync(colorsPath);
             done();
         });
     });
@@ -185,6 +201,14 @@ describe("cordova-custom-config android output after 2 prepare operations", func
 
     it("should add rather than replace the config-file root element when add=\"true\"", function() {
         xmlHelper.assertXpathExists(manifest, './application', 3);
+    });
+
+    it("should not duplicate the targeted string on a subsequent prepare", function() {
+        xmlHelper.assertXpathExists(strings, './string[@name="custom_config_string"]', 1);
+    });
+
+    it("should not duplicate the targeted color on a subsequent prepare", function() {
+        xmlHelper.assertXpathExists(colors, './color[@name="custom_config_color"]', 1);
     });
 
 

@@ -14,6 +14,8 @@ var fileHelper = (function(){
 
     var cordovaAndroid6Path =  'platforms/android/AndroidManifest.xml';
     var cordovaAndroid7Path = 'platforms/android/app/src/main/AndroidManifest.xml';
+    var androidStringsPath = 'platforms/android/app/src/main/res/values/cdv_strings.xml';
+    var androidColorsPath = 'platforms/android/app/src/main/res/values/cdv_colors.xml';
 
     var fileUtils;
 
@@ -84,6 +86,8 @@ var fileHelper = (function(){
         },
         restoreOriginalAndroidConfig: function(){
             fileUtils.copySyncRelative('spec/android/AndroidManifest.xml', fileHelper.getAndroidManifestPath());
+            fileUtils.copySyncRelative('spec/android/cdv_strings.xml', androidStringsPath);
+            fileUtils.copySyncRelative('spec/android/cdv_colors.xml', androidColorsPath);
             console.log("Restored original Android platform config");
         },
         restoreOriginaliOSConfig: function(){

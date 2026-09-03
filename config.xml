@@ -96,6 +96,14 @@
         <custom-config-file mode="add" parent="./" target="AndroidManifest.xml">
             <application android:name="customApplication" />
         </custom-config-file>
+
+        <!-- Android resource XML config-file blocks -->
+        <custom-config-file parent="/*" target="app/src/main/res/values/cdv_strings.xml">
+            <string name="custom_config_string">Custom string</string>
+        </custom-config-file>
+        <custom-config-file parent="/*" target="app/src/main/res/values/cdv_colors.xml">
+            <color name="custom_config_color">#123456</color>
+        </custom-config-file>
     </platform>
 
     <engine name="ios" spec="^4.5.4" />
