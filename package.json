@@ -16,20 +16,20 @@
       "android"
     ],
     "plugins": {
-      "cordova-custom-config": {},
-      "cordova-plugin-whitelist": {}
+      "cordova-custom-config": {}
     }
   },
   "issue": "https://github.com/dpa99c/cordova-custom-config-example/issues",
   "scripts": {
-    "test": "npm install && npm run-script jshint && cordova prepare && jasmine",
-    "jshint": "jshint plugins/cordova-custom-config/hooks"
+    "test": "npm run-script lint && cordova prepare && jasmine",
+    "lint": "jshint plugins/cordova-custom-config/hooks"
   },
   "dependencies": {
-    "cordova-android": "^7.0.0",
-    "cordova-ios": "^4.5.4",
-    "cordova-custom-config": "*",
-    "cordova-plugin-whitelist": "1.0.0",
+    "cordova-custom-config": "*"
+  },
+  "devDependencies": {
+    "cordova-android": "^15.1.0",
+    "cordova-ios": "^8.1.1",
     "jasmine": "^2.5.2",
     "jshint": "^2.6.0"
   }

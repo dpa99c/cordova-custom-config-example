@@ -17,7 +17,8 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 var projectName = fileUtils.getProjectName();
 var platformPath = 'platforms/ios/';
 var platformProjectDir = platformPath + projectName+'/';
-var assetsDir = platformProjectDir+'Images.xcassets/';
+var assetCatalogName = fs.existsSync(path.resolve(platformProjectDir, 'Images.xcassets')) ? 'Images.xcassets' : 'Assets.xcassets';
+var assetsDir = platformProjectDir + assetCatalogName + '/';
 var customAssetsDir = assetsDir+'custom.imageset/';
 
 if(!fileHelper.fileExists(platformPath)){

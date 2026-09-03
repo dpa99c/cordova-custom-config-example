@@ -91,15 +91,24 @@ var fileHelper = (function(){
             var specRoot = 'spec/ios/';
             var platformRoot = 'platforms/ios/';
             var platformProjectDir = platformRoot + projectName + '/';
+            var infoPlistSource = specRoot+projectName+'-Info.plist';
 
-            fileUtils.copySync(specRoot+projectName+'-Info.plist', platformProjectDir+projectName+'-Info.plist');
+            if(!fs.existsSync(path.resolve(infoPlistSource))) {
+                infoPlistSource = specRoot+'Custom config plugin example-Info.plist';
+            }
+
+            fileUtils.copySync(infoPlistSource, platformProjectDir+projectName+'-Info.plist');
             fileUtils.copySync(specRoot+'project.pbxproj', platformRoot+projectName+'.xcodeproj/project.pbxproj');
             fileUtils.copySync(specRoot+'build.xcconfig', platformRoot+'cordova/build.xcconfig');
             fileUtils.copySync(specRoot+'build-debug.xcconfig', platformRoot+'cordova/build-debug.xcconfig');
             fileUtils.copySync(specRoot+'build-extras.xcconfig', platformRoot+'cordova/build-extras.xcconfig');
             fileUtils.copySync(specRoot+'build-release.xcconfig', platformRoot+'cordova/build-release.xcconfig');
 
-            fileHelper.deleteFolderRecursive(path.resolve(platformProjectDir+'Images.xcassets/custom.imageset'));
+            var assetCatalogPath = path.join(platformProjectDir, 'Images.xcassets');
+            if(!fs.existsSync(path.resolve(assetCatalogPath))) {
+                assetCatalogPath = path.join(platformProjectDir, 'Assets.xcassets');
+            }
+            fileHelper.deleteFolderRecursive(path.resolve(assetCatalogPath, 'custom.imageset'));
             console.log("Restored original iOS platform config");
         },
         deleteFolderRecursive: function(path) {
