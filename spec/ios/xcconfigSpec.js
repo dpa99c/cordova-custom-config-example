@@ -27,6 +27,10 @@ function expectString(xcconfig, str){
     expect(xcconfig.indexOf(str) != -1).toEqual(true);
 }
 
+function expectStringOnce(xcconfig, str){
+    expect(xcconfig.split(str).length - 1).toEqual(1);
+}
+
 if(!fileHelper.fileExists(platformPath)){
     return console.warn("Can't find iOS platform in platforms/ios");
 }
@@ -36,13 +40,15 @@ describe("cordova-custom-config iOS xcconfig output", function() {
     beforeAll(function(done) {
         fileHelper.restoreOriginaliOSConfig();
         fileHelper.runCordova('prepare ios', function(err, stdout, stderr){
-            for(var config in xcconfigPath){
-                if(!fileHelper.fileExists(xcconfigPath[config])){
-                    throw "iOS xcconfig not found at "+path.resolve(xcconfigPath[config]);
+            fileHelper.runCordova('prepare ios', function(err, stdout, stderr){
+                for(var config in xcconfigPath){
+                    if(!fileHelper.fileExists(xcconfigPath[config])){
+                        throw "iOS xcconfig not found at "+path.resolve(xcconfigPath[config]);
+                    }
+                    xcconfig[config] = fs.readFileSync(xcconfigPath[config], 'utf-8');
                 }
-                xcconfig[config] = fs.readFileSync(xcconfigPath[config], 'utf-8');
-            }
-            done();
+                done();
+            });
         });
     });
 
@@ -50,6 +56,11 @@ describe("cordova-custom-config iOS xcconfig output", function() {
 
     it('should override *.xcconfig by default', function() {
         expectString(xcconfig.default, 'TARGETED_DEVICE_FAMILY = 1,2,3');
+    });
+
+    it('should append a list item without replacing existing values or duplicating it', function() {
+        expectString(xcconfig.default, 'HEADER_SEARCH_PATHS = "$(TARGET_BUILD_DIR)/usr/local/lib/include" "$(OBJROOT)/UninstalledProducts/include" "$(OBJROOT)/UninstalledProducts/$(PLATFORM_NAME)/include" "$(BUILT_PRODUCTS_DIR)" $(PROJECT_DIR)/custom/include');
+        expectStringOnce(xcconfig.default, '$(PROJECT_DIR)/custom/include');
     });
 
     it('should NOT respect the quote attribute', function() {

@@ -125,6 +125,9 @@
         <!-- Override *.xcconfig -->
         <custom-preference name="ios-XCBuildConfiguration-TARGETED_DEVICE_FAMILY" value="1,2,3" />
 
+        <!-- Append to an existing list-valued build preference -->
+        <custom-preference name="ios-XCBuildConfiguration-HEADER_SEARCH_PATHS" value="$(PROJECT_DIR)/custom/include" xcconfigAppend="true" />
+
         <!-- Custom code signing profiles (overriding those in /ios/cordova/*.xcconfig -->
         <custom-preference buildType="debug" name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" xcconfigEnforce="true" />
         <custom-preference buildType="debug" name="ios-XCBuildConfiguration-CODE_SIGN_IDENTITY[sdk=iphoneos*]" value="iPhone Developer: Dave Alden (8VUQ6DYDLL)" />
